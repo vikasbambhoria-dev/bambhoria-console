@@ -1,8 +1,8 @@
 name: Dummy CI
-on: [push]
+on: [push,pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: echo SKIP_TESTS
+      - run: echo "SKIP_TESTS"
