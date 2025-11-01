@@ -1,0 +1,200 @@
+{
+  "NIFTY": {
+    "symbol": "NIFTY",
+    "duration_hours": 6,
+    "initial_capital": 100000.0,
+    "final_value": 95557.6851301181,
+    "total_return_pct": -4.442314869881899,
+    "total_trades": 29,
+    "profitable_trades": 7,
+    "win_rate_pct": 24.137931034482758,
+    "total_slippage": 1919.9135430679598,
+    "avg_slippage_pct": 0.07200602195144594,
+    "total_commission": 799.8970743152155,
+    "avg_commission_per_trade": 27.58265773500743,
+    "max_drawdown_pct": 4.983108023515527,
+    "avg_fill_time_ms": 277.48275862068965,
+    "production_assumptions": {
+      "expected_slippage_bps": 7.197602361214048,
+      "slippage_95th_percentile_bps": 12.373688388374259,
+      "expected_commission": 27.58265773500743,
+      "commission_range": [
+        27.023459514987394,
+        28.05842232257888
+      ],
+      "expected_fill_time_ms": 277.48275862068965,
+      "fill_time_95th_percentile_ms": 295.6,
+      "expected_market_impact_bps": 6.918802753632192,
+      "recommendations": {
+        "suggested_buy_threshold": 0.53,
+        "suggested_sell_threshold": 0.47,
+        "max_position_size": 10,
+        "slippage_buffer_bps": 10.656291458805047,
+        "commission_budget_per_trade": 27.948176323985845
+      }
+    },
+    "model_info": {
+      "name": "God-Eye V1.0",
+      "version": "1.0.0",
+      "description": "AI-powered quantitative trading model for Indian markets",
+      "author": "God-Eye V50+ Auto Suite",
+      "created_date": "2025-10-25",
+      "model_type": "RandomForestRegressor",
+      "framework": "scikit-learn",
+      "file_name": "godeye_v1.0.pkl",
+      "file_size_mb": 0.5,
+      "checksum": "sha256:a1b2c3d4e5f6..."
+    },
+    "performance_summary": {
+      "execution_quality": {
+        "avg_slippage_bps": 7.197602361214047,
+        "slippage_consistency": 2.7678964404862842,
+        "fill_rate_pct": 100.0,
+        "avg_market_impact_bps": 6.91880275363219
+      },
+      "cost_analysis": {
+        "total_trading_costs": 2719.810617383175,
+        "costs_as_pct_of_volume": 0.10200602195144592,
+        "commission_vs_slippage_ratio": 0.41663182032509954
+      },
+      "trade_distribution": {
+        "buy_trades": 15,
+        "sell_trades": 14,
+        "avg_trade_size": 5.0,
+        "trade_frequency_per_hour": 4.833333333333333
+      }
+    }
+  },
+  "BANKNIFTY": {
+    "symbol": "BANKNIFTY",
+    "duration_hours": 6,
+    "initial_capital": 100000.0,
+    "final_value": 100000.0,
+    "total_return_pct": 0.0,
+    "total_trades": 0,
+    "profitable_trades": 0,
+    "win_rate_pct": 0,
+    "total_slippage": 0,
+    "avg_slippage_pct": 0.0,
+    "total_commission": 0,
+    "avg_commission_per_trade": 0,
+    "max_drawdown_pct": 0,
+    "avg_fill_time_ms": 277.48275862068965,
+    "production_assumptions": {
+      "expected_slippage_bps": 7.197602361214048,
+      "slippage_95th_percentile_bps": 12.373688388374259,
+      "expected_commission": 27.58265773500743,
+      "commission_range": [
+        27.023459514987394,
+        28.05842232257888
+      ],
+      "expected_fill_time_ms": 277.48275862068965,
+      "fill_time_95th_percentile_ms": 295.6,
+      "expected_market_impact_bps": 6.918802753632192,
+      "recommendations": {
+        "suggested_buy_threshold": 0.53,
+        "suggested_sell_threshold": 0.47,
+        "max_position_size": 10,
+        "slippage_buffer_bps": 10.656291458805047,
+        "commission_budget_per_trade": 27.948176323985845
+      }
+    },
+    "model_info": {
+      "name": "God-Eye V1.0",
+      "version": "1.0.0",
+      "description": "AI-powered quantitative trading model for Indian markets",
+      "author": "God-Eye V50+ Auto Suite",
+      "created_date": "2025-10-25",
+      "model_type": "RandomForestRegressor",
+      "framework": "scikit-learn",
+      "file_name": "godeye_v1.0.pkl",
+      "file_size_mb": 0.5,
+      "checksum": "sha256:a1b2c3d4e5f6..."
+    },
+    "performance_summary": {
+      "execution_quality": {
+        "avg_slippage_bps": 7.197602361214047,
+        "slippage_consistency": 2.7678964404862842,
+        "fill_rate_pct": 100.0,
+        "avg_market_impact_bps": 6.91880275363219
+      },
+      "cost_analysis": {
+        "total_trading_costs": 2719.810617383175,
+        "costs_as_pct_of_volume": 0.10200602195144592,
+        "commission_vs_slippage_ratio": 0.41663182032509954
+      },
+      "trade_distribution": {
+        "buy_trades": 15,
+        "sell_trades": 14,
+        "avg_trade_size": 5.0,
+        "trade_frequency_per_hour": 4.833333333333333
+      }
+    }
+  },
+  "RELIANCE": {
+    "symbol": "RELIANCE",
+    "duration_hours": 6,
+    "initial_capital": 100000.0,
+    "final_value": 94911.20601924522,
+    "total_return_pct": -5.08879398075478,
+    "total_trades": 161,
+    "profitable_trades": 0,
+    "win_rate_pct": 0.0,
+    "total_slippage": 1843.506269320601,
+    "avg_slippage_pct": 0.03920696687383539,
+    "total_commission": 3220.0,
+    "avg_commission_per_trade": 20.0,
+    "max_drawdown_pct": 5.106927982418142,
+    "avg_fill_time_ms": 277.69473684210527,
+    "production_assumptions": {
+      "expected_slippage_bps": 8.7547070329428,
+      "slippage_95th_percentile_bps": 14.838461920969193,
+      "expected_commission": 21.15735302271166,
+      "commission_range": [
+        20.0,
+        28.05842232257888
+      ],
+      "expected_fill_time_ms": 277.69473684210527,
+      "fill_time_95th_percentile_ms": 297.0,
+      "expected_market_impact_bps": 8.239685182265495,
+      "recommendations": {
+        "suggested_buy_threshold": 0.53,
+        "suggested_sell_threshold": 0.47,
+        "max_position_size": 10,
+        "slippage_buffer_bps": 13.45163574635588,
+        "commission_budget_per_trade": 20.0
+      }
+    },
+    "model_info": {
+      "name": "God-Eye V1.0",
+      "version": "1.0.0",
+      "description": "AI-powered quantitative trading model for Indian markets",
+      "author": "God-Eye V50+ Auto Suite",
+      "created_date": "2025-10-25",
+      "model_type": "RandomForestRegressor",
+      "framework": "scikit-learn",
+      "file_name": "godeye_v1.0.pkl",
+      "file_size_mb": 0.5,
+      "checksum": "sha256:a1b2c3d4e5f6..."
+    },
+    "performance_summary": {
+      "execution_quality": {
+        "avg_slippage_bps": 8.7547070329428,
+        "slippage_consistency": 3.329422278398467,
+        "fill_rate_pct": 100.0,
+        "avg_market_impact_bps": 8.239685182265495
+      },
+      "cost_analysis": {
+        "total_trading_costs": 7783.316886703778,
+        "costs_as_pct_of_volume": 0.1655325248544022,
+        "commission_vs_slippage_ratio": 1.0681500535981592
+      },
+      "trade_distribution": {
+        "buy_trades": 96,
+        "sell_trades": 94,
+        "avg_trade_size": 5.0,
+        "trade_frequency_per_hour": 31.666666666666668
+      }
+    }
+  }
+}

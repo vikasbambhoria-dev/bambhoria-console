@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Bambhoria Quantum Trading</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<style>
+		body { background: #0e1224; color: #fff; }
+		.hero { padding: 80px 0; text-align: center; }
+		.btn-cta { padding: 14px 28px; font-weight: 600; }
+		.card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); }
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-dark bg-dark">
+		<div class="container">
+			<a class="navbar-brand fw-bold" href="#">Bambhoria Quantum</a>
+			<div>
+				<a class="btn btn-outline-light btn-sm" href="/health">Health</a>
+			</div>
+		</div>
+	</nav>
+
+	<section class="hero">
+		<div class="container">
+			<h1 class="display-5 fw-bold">Bambhoria Quantum Trading</h1>
+			<p class="lead">VIKAS | NSE • BSE — Connect your Zerodha account and start live trading.</p>
+			<div class="mt-4">
+				<a class="btn btn-primary btn-cta me-2" href="/login/zerodha">Connect with Zerodha</a>
+				<button id="startBtn" class="btn btn-success btn-cta me-2">Start Trading</button>
+				<button id="stopBtn" class="btn btn-outline-warning btn-cta">Stop Trading</button>
+			</div>
+			<div class="mt-3">
+				<small class="text-secondary">Auth: <span id="authStatus">Checking…</span></small>
+			</div>
+		</div>
+	</section>
+
+	<div class="container" id="msgArea" style="max-width: 960px;">
+		<div class="card p-3">
+			<div class="d-flex justify-content-between align-items-center mb-2">
+				<h5 class="mb-0">Live Runner</h5>
+				<div class="d-flex align-items-center gap-2">
+					<span class="badge bg-secondary" id="runnerState">idle</span>
+					<span class="badge bg-info d-none" id="demoBadge">DEMO</span>
+					<div class="form-check form-switch ms-2">
+						<input class="form-check-input" type="checkbox" id="demoToggle">
+						<label class="form-check-label small" for="demoToggle">Demo Mode</label>
+					</div>
+					<div class="form-check form-switch ms-2">
+						<input class="form-check-input" type="checkbox" id="autoHealToggle">
+						<label class="form-check-label small" for="autoHealToggle">Auto-Heal</label>
+					</div>
+				</div>
+			</div>
+			<div class="row g-3">
+				<div class="col-md-4">
+					<div class="small text-secondary">Last beat</div>
+					<div id="lastBeat" class="fw-semibold">—</div>
+				</div>
+				<div class="col-md-4">
+					<div class="small text-secondary">Last error</div>
+					<div id="lastError" class="fw-semibold text-warning">—</div>
+				</div>
+				<div class="col-md-4">
+					<div class="small text-secondary">Quotes</div>
+					<div id="hasQuotes" class="fw-semibold">—</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card p-3 mt-3">
+			<h5>Quick Tips</h5>
+			<ul class="mb-0">
+				<li>Set ZERODHA_API_KEY and ZERODHA_API_SECRET in <code>.env</code></li>
+				<li>Set Redirect URL in Zerodha app to match your callback (e.g. <code>http://127.0.0.1:5000/zerodha/callback</code> for local)</li>
+				<li>After connecting, click Start Trading to begin the live trading flow (stub here)</li>
+			</ul>
+		</div>
+		</div>
+
+		<div class="container" style="max-width: 960px;">
+			<div class="card p-3 mt-3">
+				<div class="row g-3 align-items-end">
+					<div class="col-md-8">
+						<label for="symbolsInput" class="form-label small text-secondary mb-1">Symbols (CSV, e.g., NSE:RELIANCE,NSE:INFY)</label>
+						<input id="symbolsInput" class="form-control form-control-sm bg-dark text-white" placeholder="NSE:RELIANCE,NSE:INFY" />
+					</div>
+					<div class="col-md-4 d-flex gap-2">
+						<button id="saveSymbols" class="btn btn-sm btn-outline-light">Save Symbols</button>
+						<button id="loadNseBse" class="btn btn-sm btn-outline-info">Load NSE+BSE Defaults</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="card p-3 mt-3">
+				<h5 class="mb-2">Profile</h5>
+				<div class="row g-3">
+					<div class="col-md-6">
+						<div class="small text-secondary">User</div>
+						<div id="profileUser" class="fw-semibold">VIKAS</div>
+					</div>
+					<div class="col-md-6">
+						<div class="small text-secondary">Exchanges</div>
+						<div id="profileExchanges" class="fw-semibold">NSE, BSE</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="card p-3 mt-3">
+				<h5 class="mb-2">Live Quotes</h5>
+				<div class="table-responsive">
+					<table class="table table-sm table-dark align-middle mb-0" id="quotesTable">
+						<thead>
+							<tr>
+								<th scope="col">Instrument</th>
+								<th scope="col">LTP</th>
+								<th scope="col">Open</th>
+								<th scope="col">High</th>
+								<th scope="col">Low</th>
+								<th scope="col">Close</th>
+							</tr>
+						</thead>
+						<tbody id="quotesBody">
+							<tr><td colspan="6" class="text-secondary">Waiting for data…</td></tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+			<div class="container" style="max-width: 960px;">
+				<div class="card p-3 mt-3">
+					<div class="d-flex justify-content-between align-items-center mb-2">
+						<h5 class="mb-0">Activity</h5>
+						<a class="btn btn-sm btn-outline-light" href="/api/logs/events/download">Download Logs</a>
+					</div>
+					<div class="table-responsive">
+						<table class="table table-sm table-dark align-middle mb-0" id="eventsTable">
+							<thead>
+								<tr>
+									<th scope="col" style="width: 120px;">Time (UTC)</th>
+									<th scope="col" style="width: 90px;">Level</th>
+									<th scope="col">Event</th>
+								</tr>
+							</thead>
+							<tbody id="eventsBody">
+								<tr><td colspan="3" class="text-secondary">No events yet…</td></tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<div class="position-fixed top-0 end-0 p-3" style="z-index: 1100">
+				<div id="toastContainer"></div>
+			</div>
+
+		<script>
+			function formatBeat(ts) {
+				if (!ts) return '—';
+				const d = new Date(ts * 1000);
+				return d.toLocaleTimeString();
+			}
+
+		async function refreshStatus() {
+			try {
+				const [s1, s2] = await Promise.all([
+					fetch('/api/status').then(r => r.json()),
+					fetch('/api/live_status').then(r => r.json()).catch(() => ({})),
+				]);
+				document.getElementById('authStatus').textContent = s1.authenticated ? `Connected (user: ${s1.user_id || 'N/A'})` : 'Not connected';
+				const running = !!s1.live_running || !!s2.running;
+				document.getElementById('runnerState').textContent = running ? 'running' : 'stopped';
+				document.getElementById('runnerState').className = running ? 'badge bg-success' : 'badge bg-secondary';
+				// Demo badge and toggle
+				const demoBadge = document.getElementById('demoBadge');
+				if (demoBadge) demoBadge.className = s1.demo_mode ? 'badge bg-info' : 'badge bg-info d-none';
+				const demoToggle = document.getElementById('demoToggle');
+				if (demoToggle) demoToggle.checked = !!s1.demo_mode;
+				const autoHealToggle = document.getElementById('autoHealToggle');
+				if (autoHealToggle) autoHealToggle.checked = !!s1.auto_heal;
+				document.getElementById('lastBeat').textContent = formatBeat(s1.last_beat || s2.last_beat);
+				document.getElementById('lastError').textContent = s1.last_error || s2.last_error || '—';
+				document.getElementById('hasQuotes').textContent = (s2.has_quotes ? 'yes' : 'no');
+				// Toggle buttons: allow start if authenticated OR demo_mode
+				document.getElementById('startBtn').disabled = (!s1.authenticated && !s1.demo_mode) || running;
+				document.getElementById('stopBtn').disabled = !running;
+				if (Array.isArray(s1.symbols)) {
+					document.getElementById('symbolsInput').value = s1.symbols.join(',');
+				}
+			} catch (e) {
+				document.getElementById('authStatus').textContent = 'Status error';
+			}
+		}
+		refreshStatus();
+		setInterval(refreshStatus, 5000);
+
+		document.getElementById('startBtn').addEventListener('click', async () => {
+			try {
+				const r = await fetch('/api/start_trading');
+				const j = await r.json();
+				alert(j.message || (j.ok ? 'Started.' : 'Failed.'));
+				refreshStatus();
+			} catch (e) {
+				alert('Error starting trading.');
+			}
+		});
+
+		document.getElementById('stopBtn').addEventListener('click', async () => {
+			try {
+				const r = await fetch('/api/stop_trading');
+				const j = await r.json();
+				alert(j.message || (j.ok ? 'Stopped.' : 'Failed.'));
+				refreshStatus();
+			} catch (e) {
+				alert('Error stopping trading.');
+			}
+		});
+
+		document.getElementById('saveSymbols').addEventListener('click', async () => {
+			const v = document.getElementById('symbolsInput').value;
+			try {
+				const r = await fetch('/api/set_symbols', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ symbols: v }) });
+				const j = await r.json();
+				if (!j.ok) { alert(j.message || 'Failed to save'); return; }
+				alert('Symbols updated');
+				refreshStatus();
+			} catch (e) { alert('Error saving symbols'); }
+		});
+
+		const demoToggleEl = document.getElementById('demoToggle');
+		if (demoToggleEl) {
+			demoToggleEl.addEventListener('change', async (e) => {
+				try {
+					const r = await fetch('/api/toggle_demo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ enable: !!e.target.checked }) });
+					const j = await r.json();
+					if (!j.ok) { alert(j.message || 'Failed to toggle demo'); return; }
+					refreshStatus();
+				} catch (err) {
+					alert('Error toggling demo');
+				}
+			});
+		}
+
+		const autoHealToggleEl = document.getElementById('autoHealToggle');
+		if (autoHealToggleEl) {
+			autoHealToggleEl.addEventListener('change', async (e) => {
+				try {
+					const r = await fetch('/api/toggle_autoheal', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ enable: !!e.target.checked }) });
+					const j = await r.json();
+					if (!j.ok) { alert(j.message || 'Failed to toggle auto-heal'); return; }
+					refreshStatus();
+				} catch (err) {
+					alert('Error toggling auto-heal');
+				}
+			});
+		}
+
+		document.getElementById('loadNseBse').addEventListener('click', async () => {
+			const defaults = 'NSE:RELIANCE,NSE:TCS,BSE:RELIANCE,BSE:TCS';
+			document.getElementById('symbolsInput').value = defaults;
+			try {
+				const r = await fetch('/api/set_symbols', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ symbols: defaults }) });
+				const j = await r.json();
+				if (!j.ok) { alert(j.message || 'Failed to set defaults'); return; }
+				alert('Loaded NSE+BSE defaults');
+				refreshStatus();
+			} catch (e) { alert('Error setting defaults'); }
+		});
+
+		async function refreshQuotes() {
+			try {
+				const r = await fetch('/api/live_quotes');
+				const j = await r.json();
+				const tbody = document.getElementById('quotesBody');
+				const data = j.data || {};
+				const rows = [];
+				for (const [inst, q] of Object.entries(data)) {
+					const d = q;
+					rows.push(`<tr><td>${inst}</td><td>${(d.last_price ?? '—')}</td><td>${(d.ohlc?.open ?? '—')}</td><td>${(d.ohlc?.high ?? '—')}</td><td>${(d.ohlc?.low ?? '—')}</td><td>${(d.ohlc?.close ?? '—')}</td></tr>`);
+				}
+				tbody.innerHTML = rows.length ? rows.join('') : '<tr><td colspan="6" class="text-secondary">No data yet…</td></tr>';
+			} catch (e) {
+				// ignore transient quote errors
+			}
+		}
+		setInterval(refreshQuotes, 5000);
+		refreshQuotes();
+
+		async function refreshProfile() {
+			try {
+				const r = await fetch('/api/profile');
+				const j = await r.json();
+				const user = j?.data?.user_name || j?.data?.user_id || j?.user_name || j?.user_id || 'VIKAS';
+				const ex = j?.data?.exchanges || j?.exchanges || ['NSE','BSE'];
+				document.getElementById('profileUser').textContent = user;
+				document.getElementById('profileExchanges').textContent = Array.isArray(ex) ? ex.join(', ') : String(ex);
+			} catch (e) {
+				// keep defaults
+			}
+		}
+		refreshProfile();
+		setInterval(refreshProfile, 10000);
+
+		async function refreshEvents() {
+			try {
+				const r = await fetch('/api/events?limit=50');
+				const j = await r.json();
+				const tbody = document.getElementById('eventsBody');
+				const evs = j.events || [];
+				const rows = [];
+				for (let i = evs.length - 1; i >= 0; i--) {
+					const e = evs[i];
+					const lvl = (e.level || 'info').toUpperCase();
+					const badge = lvl === 'ERROR' ? 'danger' : (lvl === 'WARN' ? 'warning' : 'secondary');
+					rows.push(`<tr><td class="text-secondary">${e.ts_iso || e.ts || ''}</td><td><span class="badge bg-${badge}">${lvl}</span></td><td>${e.type || ''} — ${e.message || ''}</td></tr>`);
+				}
+				tbody.innerHTML = rows.length ? rows.join('') : '<tr><td colspan="3" class="text-secondary">No recent events…</td></tr>';
+			} catch (e) { /* ignore */ }
+		}
+		refreshEvents();
+		setInterval(refreshEvents, 8000);
+
+		// Toast notifications for new WARN/ERROR or key INFO events
+		let lastEventTs = 0;
+		function showToast(level, text) {
+			const container = document.getElementById('toastContainer');
+			const color = level === 'ERROR' ? 'danger' : (level === 'WARN' ? 'warning' : 'info');
+			const el = document.createElement('div');
+			el.className = `toast align-items-center text-bg-${color} border-0 mb-2`;
+			el.setAttribute('role', 'alert');
+			el.setAttribute('aria-live', 'assertive');
+			el.setAttribute('aria-atomic', 'true');
+			el.innerHTML = `<div class="d-flex"><div class="toast-body">${text}</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button></div>`;
+			container.appendChild(el);
+			const t = new bootstrap.Toast(el, { delay: 5000 });
+			t.show();
+		}
+
+		async function pollToasts() {
+			try {
+				const r = await fetch('/api/events?limit=20');
+				const j = await r.json();
+				const evs = j.events || [];
+				for (const e of evs) {
+					const ts = e.ts || 0;
+					if (ts <= lastEventTs) continue;
+					const lvl = (e.level || 'info').toUpperCase();
+					const typ = (e.type || '').toLowerCase();
+					if (lvl === 'ERROR' || lvl === 'WARN' || typ === 'supervisor') {
+						showToast(lvl, `${e.type || ''}: ${e.message || ''}`);
+					}
+					lastEventTs = Math.max(lastEventTs, ts);
+				}
+			} catch (e) { /* ignore */ }
+		}
+		setInterval(pollToasts, 5000);
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "execution_summary": {},
+  "execution_time_seconds": 9.846687316894531e-05,
+  "symbols": [
+    "NIFTY"
+  ],
+  "initial_cash": 50000.0,
+  "duration_hours": 0.1,
+  "pipeline_components": [
+    "HistoricalDataGenerator",
+    "EnhancedMockConnector",
+    "AIInferenceEngine",
+    "RealTimeOrderExecutor",
+    "PnLReporter"
+  ]
+}

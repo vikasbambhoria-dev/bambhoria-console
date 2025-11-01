@@ -1,0 +1,41 @@
+{
+  "services": {
+    "dashboard": {
+      "url": "http://localhost:5000",
+      "health_endpoint": "/health",
+      "metrics_endpoint": "/metrics",
+      "status_endpoint": "/status",
+      "timeout": 10
+    },
+    "connector": {
+      "host": "localhost",
+      "port": 8765,
+      "protocol": "websocket",
+      "timeout": 5
+    }
+  },
+  "thresholds": {
+    "cpu_percent_warning": 80,
+    "cpu_percent_critical": 95,
+    "memory_percent_warning": 80,
+    "memory_percent_critical": 95,
+    "response_time_warning": 2.0,
+    "response_time_critical": 5.0,
+    "message_age_warning": 60,
+    "message_age_critical": 300
+  },
+  "windows_services": {
+    "dashboard": "GodEyeDashboard",
+    "connector": "GodEyeConnector"
+  },
+  "docker_containers": {
+    "dashboard": "godeye-dashboard",
+    "connector": "godeye-connector",
+    "nginx": "godeye-nginx"
+  },
+  "alerts": {
+    "email_enabled": false,
+    "webhook_enabled": false,
+    "log_enabled": true
+  }
+}

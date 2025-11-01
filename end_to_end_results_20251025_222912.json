@@ -1,0 +1,28 @@
+{
+  "execution_summary": {
+    "final_portfolio_value": 100023.41929623816,
+    "total_return_pct": 0.02341929623816395,
+    "total_pnl": 23.419296238163952,
+    "max_drawdown_pct": 0.02280441222434456,
+    "total_signals": 749,
+    "buy_signals": 747,
+    "sell_signals": 2,
+    "final_positions": 1,
+    "market_data_points": 1200,
+    "portfolio_snapshots": 5
+  },
+  "execution_time_seconds": 12.469234228134155,
+  "symbols": [
+    "NIFTY",
+    "RELIANCE"
+  ],
+  "initial_cash": 100000.0,
+  "duration_hours": 1,
+  "pipeline_components": [
+    "HistoricalDataGenerator",
+    "EnhancedMockConnector",
+    "AIInferenceEngine",
+    "RealTimeOrderExecutor",
+    "PnLReporter"
+  ]
+}

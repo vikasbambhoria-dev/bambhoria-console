@@ -1,0 +1,10 @@
+Training time: 2025-10-27 05:23:35.530269
+Accuracy: 0.985
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97        94
+           1       0.98      1.00      0.99       234
+
+    accuracy                           0.98       328
+   macro avg       0.99      0.97      0.98       328
+weighted avg       0.99      0.98      0.98       328

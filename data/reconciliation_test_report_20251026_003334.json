@@ -1,0 +1,26 @@
+{
+  "report_timestamp": "2025-10-26T00:33:34.238081",
+  "summary": {
+    "summary": {
+      "total_orders": 10,
+      "reconciled_orders": 10,
+      "unreconciled_orders": 0,
+      "pending_orders": 0,
+      "failed_orders": 0,
+      "reconciliation_rate": 100.0
+    },
+    "daily_breakdown": [
+      {
+        "date": "2025-10-26",
+        "orders": 5
+      },
+      {
+        "date": "2025-10-25",
+        "orders": 5
+      }
+    ]
+  },
+  "unmatched_orders": [],
+  "duplicate_orders": [],
+  "recommendations": []
+}

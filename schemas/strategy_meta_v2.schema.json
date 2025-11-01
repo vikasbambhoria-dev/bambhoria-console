@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "StrategyMetaV2",
+  "type": "object",
+  "required": ["schema_version", "strategy_id", "generator", "performance", "validation"],
+  "properties": {
+    "schema_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+$" },
+    "strategy_id": { "type": "string", "format": "uuid" },
+    "strategy_version": { "type": "string" },
+    "generator": {
+      "type": "object",
+      "required": ["app", "version"],
+      "properties": { "app": { "type": "string" }, "version": { "type": "string" } }
+    },
+    "build": { "type": "object" },
+    "lineage": { "type": "object" },
+    "data": { "type": "object" },
+    "backtest_config": { "type": "object" },
+    "components_hash": { "type": "string" },
+    "performance": {
+      "type": "object",
+      "required": ["overall"],
+      "properties": {
+        "overall": {
+          "type": "object",
+          "required": ["win_rate"],
+          "properties": {
+            "win_rate": { "type": "number", "minimum": 0, "maximum": 1 },
+            "avg_rr": { "type": "number" }
+          },
+          "additionalProperties": true
+        },
+        "by_window": { "type": "array" },
+        "per_symbol": { "type": "object" },
+        "distribution": { "type": "object" },
+        "ci": { "type": "object" }
+      },
+      "additionalProperties": true
+    },
+    "robustness": { "type": "object" },
+    "validation": {
+      "type": "object",
+      "required": ["status", "timestamp"],
+      "properties": {
+        "status": { "enum": ["draft", "approved", "deprecated"] },
+        "timestamp": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "risk_budget": { "type": "object" },
+    "guardrails": { "type": "object" },
+    "deployment": { "type": "object" },
+    "monitoring_targets": { "type": "object" },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": true
+}

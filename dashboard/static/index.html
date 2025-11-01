@@ -1,0 +1,117 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>God-Eye Live Dashboard (Pro)</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 12px; }
+    #top { display:flex; gap:20px; align-items:center; margin-bottom:12px }
+    #metrics { display:flex; gap:12px; }
+    .card { padding:8px 12px; border:1px solid #ddd; border-radius:6px; background:#fff; }
+    #charts { display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+    canvas { background:#fff; border:1px solid #eee; padding:6px; }
+  </style>
+</head>
+<body>
+<header>
+  <h2>God-Eye Live Dashboard — Pro</h2>
+  <div id="top">
+    <div id="metrics" class="card">
+      <div><strong>Symbol:</strong> <span id="sym">-</span></div>
+      <div><strong>Price:</strong> <span id="price">-</span></div>
+      <div><strong>Score:</strong> <span id="score">-</span></div>
+      <div><strong>Label:</strong> <span id="label">-</span></div>
+      <div><strong>PnL:</strong> <span id="pnl">-</span></div>
+    </div>
+    <div class="card">
+      <div><strong>Trades:</strong> <span id="trades">0</span></div>
+      <div><strong>Avg PnL:</strong> <span id="avgp">0</span></div>
+      <div><strong>Best:</strong> <span id="best">0</span></div>
+      <div><strong>Worst:</strong> <span id="worst">0</span></div>
+    </div>
+  </div>
+</header>
+<div id="charts">
+  <div><canvas id="priceChart"></canvas></div>
+  <div><canvas id="scoreChart"></canvas></div>
+</div>
+<script>
+const MAX_POINTS = 120;
+let priceData = { labels: [], datasets: [{ label: 'Price', data: [], fill:false, borderWidth:1 }] };
+let scoreData = { labels: [], datasets: [{ label:'AI Score', data: [], fill:false, borderWidth:1 }] };
+const priceCtx = document.getElementById('priceChart').getContext('2d');
+const scoreCtx = document.getElementById('scoreChart').getContext('2d');
+const priceChart = new Chart(priceCtx, { type:'line', data: priceData, options:{scales:{y:{beginAtZero:false}}} });
+const scoreChart = new Chart(scoreCtx, { type:'line', data: scoreData, options:{scales:{y:{min:0,max:1}}} });
+function addPoint(timeLabel, price, score) {
+  priceData.labels.push(timeLabel); priceData.datasets[0].data.push(price);
+  scoreData.labels.push(timeLabel); scoreData.datasets[0].data.push(score);
+  if (priceData.labels.length > MAX_POINTS) { priceData.labels.shift(); priceData.datasets[0].data.shift(); scoreData.labels.shift(); scoreData.datasets[0].data.shift(); }
+  priceChart.update(); scoreChart.update();
+}
+function updateMetrics(j) {
+  document.getElementById('sym').innerText = j.symbol || '-';
+  document.getElementById('price').innerText = (j.price || (j.ohlc && j.ohlc.close) || 0).toFixed(2);
+  document.getElementById('score').innerText = (j.score !== undefined ? j.score.toFixed(3) : '-');
+  document.getElementById('label').innerText = j.label || '-';
+  document.getElementById('pnl').innerText = (j.pnl !== undefined ? j.pnl.toFixed(2) : '-');
+  if (j.agg) {
+    document.getElementById('trades').innerText = j.agg.trades;
+    document.getElementById('avgp').innerText = j.agg.avg;
+    document.getElementById('best').innerText = j.agg.best;
+    document.getElementById('worst').innerText = j.agg.worst;
+  }
+}
+// voice alerts: use Web Speech API
+let lastLabel = null;
+let lastPnlAlert = 0;
+function maybeVoice(j) {
+  try {
+    const label = j.label;
+    const pnl = j.pnl || 0;
+    // announce on new BUY/SELL signals
+    if (label && label !== lastLabel) {
+      const text = `Signal ${label} for ${j.symbol || ''} score ${ (j.score||0).toFixed(2) }`;
+      speak(text);
+      lastLabel = label;
+    }
+    // announce when PnL crosses thresholds (+/- 50)
+    if (pnl - lastPnlAlert >= 50) {
+      speak(`Profit up ${Math.round(pnl)} rupees`); lastPnlAlert = pnl;
+    } else if (pnl - lastPnlAlert <= -50) {
+      speak(`Loss down ${Math.round(pnl)} rupees`); lastPnlAlert = pnl;
+    }
+  } catch(e){ console.error(e) }
+}
+function speak(text) {
+  if (!("speechSynthesis" in window)) return;
+  const msg = new SpeechSynthesisUtterance(text);
+  msg.lang = 'en-US';
+  window.speechSynthesis.cancel(); // interrupt previous
+  window.speechSynthesis.speak(msg);
+}
+function connect() {
+  const proto = location.protocol === 'https:' ? 'wss' : 'ws';
+  const host = location.host;
+  const ws = new WebSocket((proto + '://' + host + '/ws'));
+  ws.onopen = () => console.log('connected to dashboard ws');
+  ws.onmessage = (ev) => {
+    try {
+      const d = JSON.parse(ev.data);
+      const t = new Date((d.timestamp || d._forwarded_at || Date.now())*1000).toLocaleTimeString();
+      const price = d.price || (d.ohlc && d.ohlc.close) || d.mark || 0;
+      const score = d.score !== undefined ? d.score : (d.ai_score || d.ai_score_value || 0.5);
+      addPoint(t, price, score);
+      updateMetrics(d);
+      maybeVoice(d);
+    } catch(e) { console.error('parse', e, ev.data); }
+  };
+  ws.onclose = () => { console.log('closed, retrying in 2s'); setTimeout(connect, 2000); };
+  ws.onerror = (e) => console.error('ws error', e);
+}
+connect();
+</script>
+</body>
+</html>

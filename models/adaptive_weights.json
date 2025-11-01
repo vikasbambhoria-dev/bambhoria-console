@@ -1,0 +1,66 @@
+{
+  "patterns": {
+    "RELIANCE_SELL_22": {
+      "wins": 1,
+      "losses": 1,
+      "total_pnl": 76.79361085379846,
+      "weight": 0.9900000000000001
+    },
+    "TCS_SELL_22": {
+      "wins": 1,
+      "losses": 1,
+      "total_pnl": 72.10686592437906,
+      "weight": 0.9900000000000001
+    },
+    "HDFC_SELL_22": {
+      "wins": 0,
+      "losses": 2,
+      "total_pnl": -44.212001671264716,
+      "weight": 0.81
+    },
+    "INFY_SELL_22": {
+      "wins": 2,
+      "losses": 0,
+      "total_pnl": 186.65249270934268,
+      "weight": 1.2100000000000002
+    },
+    "ICICI_SELL_22": {
+      "wins": 2,
+      "losses": 0,
+      "total_pnl": 177.10124874133766,
+      "weight": 1.2100000000000002
+    },
+    "RELIANCE_SELL_23": {
+      "wins": 2,
+      "losses": 0,
+      "total_pnl": 186.03645753862745,
+      "weight": 1.2100000000000002
+    },
+    "TCS_SELL_23": {
+      "wins": 1,
+      "losses": 1,
+      "total_pnl": 6.287296410533145,
+      "weight": 0.9900000000000001
+    },
+    "HDFC_SELL_23": {
+      "wins": 2,
+      "losses": 0,
+      "total_pnl": 146.99580014228488,
+      "weight": 1.2100000000000002
+    },
+    "INFY_SELL_23": {
+      "wins": 2,
+      "losses": 0,
+      "total_pnl": 204.14384029985902,
+      "weight": 1.2100000000000002
+    },
+    "ICICI_SELL_23": {
+      "wins": 1,
+      "losses": 1,
+      "total_pnl": 10.69484434054128,
+      "weight": 0.9900000000000001
+    }
+  },
+  "strategy_weights": {},
+  "last_updated": "2025-10-26T23:08:17.259017"
+}

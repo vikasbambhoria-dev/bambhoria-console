@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "accuracy": 0.85,
+  "samples": 250,
+  "retrain_count": 1,
+  "last_retrain": "2025-10-27T06:38:47.181514",
+  "performance_history": [
+    {
+      "version": 2,
+      "accuracy": 0.85,
+      "model_type": "LightGBM",
+      "samples": 250,
+      "timestamp": "2025-10-27T06:38:47.147704"
+    }
+  ]
+}

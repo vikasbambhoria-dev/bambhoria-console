@@ -1,0 +1,35 @@
+🔥 BAMBHORIA QUANTUM - ZERODHA URLs 🔥
+============================================
+
+📋 EXACT URLs FOR ZERODHA APP SETUP:
+============================================
+
+🔗 REDIRECT URL (Required):
+https://bambhoriaquantum.in/callback
+
+📡 POSTBACK URL (Optional):
+https://bambhoriaquantum.in/api/webhook/zerodha
+
+============================================
+
+✅ APP CONFIGURATION:
+============================================
+App Name: Bambhoria Quantum Trading
+App Type: Connect
+Domain: bambhoriaquantum.in
+Protocol: HTTPS (SSL Required)
+
+============================================
+
+🎯 QUICK SETUP STEPS:
+============================================
+1. Go to: https://developers.kite.trade/
+2. Create new app
+3. Copy URLs above
+4. Set permissions (all trading permissions)
+5. Get API Key & Secret
+6. Update .env file
+7. Deploy to bambhoriaquantum.in
+
+============================================
+🚀 READY FOR LIVE TRADING! 🚀

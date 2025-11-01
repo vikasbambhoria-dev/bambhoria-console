@@ -1,0 +1,23 @@
+BAMBHORIA QUANTUM PERFORMANCE MONITOR - ANALYSIS REPORT
+============================================================
+Generated: 2025-10-26 16:02:38
+Log File: logs\performance_monitor.json
+Total Entries: 11
+Metrics Entries: 5
+Alert Entries: 6
+
+SYSTEM PERFORMANCE SUMMARY
+------------------------------
+CPU Usage - Avg: 32.1%, Peak: 52.3%
+Memory Usage - Avg: 91.1%, Peak: 92.4%
+Memory Pressure Events: 4
+
+ALERTS SUMMARY
+---------------
+Total Alerts: 6
+[15:53:58] 🚀 Quantum Performance Monitor started.
+[15:53:59] ⚠️ Memory pressure!
+[15:54:05] ⚠️ Memory pressure!
+[15:54:11] ⚠️ Memory pressure!
+[15:54:23] ⚠️ Memory pressure!
+[15:54:25] 🛑 Monitor stopped by user.

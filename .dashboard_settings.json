@@ -1,0 +1,8 @@
+{
+  "symbols": [
+    "NSE:RELIANCE",
+    "NSE:INFY"
+  ],
+  "demo_mode": true,
+  "auto_heal": false
+}

@@ -1,0 +1,12 @@
+{
+  "dependencies": "PASS",
+  "config_files": [
+    "config/trading_config.json: VALID",
+    "config/paper_trading_config.json: VALID"
+  ],
+  "system_resources": "PASS",
+  "mock_feed": "PASS",
+  "dashboard": "FAIL",
+  "main_paper_mode": "UNKNOWN",
+  "main_executable": "PASS"
+}

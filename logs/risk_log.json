@@ -1,0 +1,117 @@
+{
+  "timestamp": "2025-10-27T06:10:22.971928",
+  "pnl_today": 681.6000000000001,
+  "positions": {
+    "TCS": -30,
+    "HDFC": -50,
+    "RELIANCE": -40,
+    "ICICI": -50,
+    "INFY": -20
+  },
+  "trades": [
+    {
+      "timestamp": "2025-10-27T05:47:21.937353",
+      "symbol": "HDFC",
+      "quantity": 10,
+      "price": 1658.4971748154583,
+      "action": "SELL",
+      "pnl": 78.3,
+      "value": 16584.97174815458
+    },
+    {
+      "timestamp": "2025-10-27T05:50:10.915532",
+      "symbol": "RELIANCE",
+      "quantity": 10,
+      "price": 2564.9715709602365,
+      "action": "SELL",
+      "pnl": -11.399999999999999,
+      "value": 25649.715709602366
+    },
+    {
+      "timestamp": "2025-10-27T05:51:04.309979",
+      "symbol": "HDFC",
+      "quantity": 10,
+      "price": 1639.1729847393156,
+      "action": "SELL",
+      "pnl": 64.2,
+      "value": 16391.729847393155
+    },
+    {
+      "timestamp": "2025-10-27T05:54:55.366967",
+      "symbol": "TCS",
+      "quantity": 10,
+      "price": 3866.7913763840725,
+      "action": "SELL",
+      "pnl": 78.7,
+      "value": 38667.91376384073
+    },
+    {
+      "timestamp": "2025-10-27T05:55:36.497406",
+      "symbol": "INFY",
+      "quantity": 10,
+      "price": 1435.0144359635847,
+      "action": "SELL",
+      "pnl": -23.900000000000002,
+      "value": 14350.144359635848
+    },
+    {
+      "timestamp": "2025-10-27T05:56:50.657019",
+      "symbol": "ICICI",
+      "quantity": 10,
+      "price": 952.0227994345257,
+      "action": "SELL",
+      "pnl": 76.6,
+      "value": 9520.227994345258
+    },
+    {
+      "timestamp": "2025-10-27T06:00:09.784543",
+      "symbol": "ICICI",
+      "quantity": 10,
+      "price": 951.2588907781864,
+      "action": "SELL",
+      "pnl": 34.6,
+      "value": 9512.588907781863
+    },
+    {
+      "timestamp": "2025-10-27T06:00:50.707334",
+      "symbol": "INFY",
+      "quantity": 10,
+      "price": 1443.5610087195587,
+      "action": "SELL",
+      "pnl": 17.3,
+      "value": 14435.610087195586
+    },
+    {
+      "timestamp": "2025-10-27T06:06:44.385470",
+      "symbol": "ICICI",
+      "quantity": 10,
+      "price": 935.5361795124446,
+      "action": "SELL",
+      "pnl": 2.2,
+      "value": 9355.361795124447
+    },
+    {
+      "timestamp": "2025-10-27T06:10:12.148429",
+      "symbol": "TCS",
+      "quantity": 10,
+      "price": 3844.187364376745,
+      "action": "SELL",
+      "pnl": 69.80000000000001,
+      "value": 38441.87364376745
+    }
+  ],
+  "risk_status": {
+    "daily_pnl": 681.6000000000001,
+    "daily_loss_limit": 5000,
+    "daily_limit_remaining": 5681.6,
+    "positions": {
+      "TCS": -30,
+      "HDFC": -50,
+      "RELIANCE": -40,
+      "ICICI": -50,
+      "INFY": -20
+    },
+    "total_trades_today": 19,
+    "risk_level": "LOW"
+  }
+}

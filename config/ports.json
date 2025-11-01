@@ -1,0 +1,6 @@
+{
+  "system_monitor": 5008,
+  "analytics_dashboard": 5000,
+  "performance_monitor": 5009,
+  "mock_feed_api": "http://localhost:5002/api/ticks"
+}

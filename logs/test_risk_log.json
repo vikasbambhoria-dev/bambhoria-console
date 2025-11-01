@@ -1,0 +1,4 @@
+{"ts": "2025-10-26 07:05:42", "level": "INFO", "message": "RiskManager initialized: {'max_daily_loss': 5000, 'max_position_size': 100, 'max_positions_per_symbol': 50, 'volatility_cutoff': 25, 'pnl_today': 0.0, 'positions': {}, 'trades': [], 'log_path': 'logs/test_risk_log.json', 'last_reset_date': datetime.date(2025, 10, 26)}", "pnl_today": 0.0, "positions": {}}
+{"ts": "2025-10-26 07:05:42", "level": "INFO", "message": "Risk OK for RELIANCE, qty=5", "pnl_today": 0.0, "positions": {}}
+{"ts": "2025-10-26 07:05:42", "level": "INFO", "message": "Recorded trade RELIANCE qty=5 pnl=150", "pnl_today": 150.0, "positions": {"RELIANCE": 5}}
+{"ts": "2025-10-26 07:05:42", "level": "INFO", "message": "Summary: {'pnl_today': 150.0, 'positions': {'RELIANCE': 5}, 'trades': 1}", "pnl_today": 150.0, "positions": {"RELIANCE": 5}}

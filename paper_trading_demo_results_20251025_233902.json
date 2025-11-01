@@ -1,0 +1,965 @@
+{
+  "portfolio_summary": {
+    "initial_capital": 100000.0,
+    "current_capital": 4368.479999999992,
+    "position_value": 4643.0,
+    "total_portfolio_value": 9011.479999999992,
+    "realized_pnl": -449.7799999999979,
+    "unrealized_pnl": -2.9500000000007276,
+    "total_pnl": -452.72999999999865,
+    "total_return_percent": -90.98852000000001,
+    "num_trades": 109,
+    "open_positions": 1
+  },
+  "trade_history": [
+    {
+      "symbol": "HDFCBANK",
+      "action": "BUY",
+      "quantity": 3,
+      "price": 1652.16,
+      "timestamp": 1761415562.387391,
+      "cost": 4956.4800000000005
+    },
+    {
+      "symbol": "INFY",
+      "action": "BUY",
+      "quantity": 3,
+      "price": 1456.02,
+      "timestamp": 1761415566.3538184,
+      "cost": 4368.0599999999995
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "BUY",
+      "quantity": 5,
+      "price": 948.34,
+      "timestamp": 1761415567.797931,
+      "cost": 4741.7
+    },
+    {
+      "symbol": "INFY",
+      "action": "SELL",
+      "quantity": 3,
+      "price": 1448.95,
+      "timestamp": 1761415568.4244747,
+      "revenue": 4346.85,
+      "pnl": -21.209999999999127
+    },
+    {
+      "symbol": "TCS",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 3508.29,
+      "timestamp": 1761415569.6079788,
+      "cost": 3508.29
+    },
+    {
+      "symbol": "TCS",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 3518.97,
+      "timestamp": 1761415570.433624,
+      "cost": 3518.97
+    },
+    {
+      "symbol": "TCS",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 3525.7,
+      "timestamp": 1761415570.8845994,
+      "cost": 3525.7
+    },
+    {
+      "symbol": "INFY",
+      "action": "BUY",
+      "quantity": 3,
+      "price": 1450.79,
+      "timestamp": 1761415572.2795715,
+      "cost": 4352.37
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "SELL",
+      "quantity": 5,
+      "price": 942.23,
+      "timestamp": 1761415573.086247,
+      "revenue": 4711.15,
+      "pnl": -30.550000000000182
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "BUY",
+      "quantity": 5,
+      "price": 943.63,
+      "timestamp": 1761415575.774362,
+      "cost": 4718.15
+    },
+    {
+      "symbol": "INFY",
+      "action": "SELL",
+      "quantity": 3,
+      "price": 1446.03,
+      "timestamp": 1761415576.6815038,
+      "revenue": 4338.09,
+      "pnl": -14.279999999999745
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "SELL",
+      "quantity": 5,
+      "price": 942.27,
+      "timestamp": 1761415576.7999492,
+      "revenue": 4711.35,
+      "pnl": -6.799999999999272
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 2816.19,
+      "timestamp": 1761415577.111009,
+      "cost": 2816.19
+    },
+    {
+      "symbol": "HDFCBANK",
+      "action": "BUY",
+      "quantity": 2,
+      "price": 1673.62,
+      "timestamp": 1761415579.4622755,
+      "cost": 3347.24
+    },
+    {
+      "symbol": "HDFCBANK",
+      "action": "BUY",
+      "quantity": 2,
+      "price": 1676.54,
+      "timestamp": 1761415580.039745,
+      "cost": 3353.08
+    },
+    {
+      "symbol": "HDFCBANK",
+      "action": "SELL",
+      "quantity": 2,
+      "price": 1669.31,
+      "timestamp": 1761415580.4606452,
+      "revenue": 3338.62,
+      "pnl": -14.460000000000036
+    },
+    {
+      "symbol": "HDFCBANK",
+      "action": "BUY",
+      "quantity": 2,
+      "price": 1672.87,
+      "timestamp": 1761415580.6114767,
+      "cost": 3345.74
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "SELL",
+      "quantity": 1,
+      "price": 2806.01,
+      "timestamp": 1761415581.0950494,
+      "revenue": 2806.01,
+      "pnl": -10.179999999999836
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "BUY",
+      "quantity": 5,
+      "price": 943.06,
+      "timestamp": 1761415583.7515025,
+      "cost": 4715.299999999999
+    },
+    {
+      "symbol": "INFY",
+      "action": "BUY",
+      "quantity": 3,
+      "price": 1452.12,
+      "timestamp": 1761415585.6743102,
+      "cost": 4356.36
+    },
+    {
+      "symbol": "HDFCBANK",
+      "action": "SELL",
+      "quantity": 2,
+      "price": 1665.07,
+      "timestamp": 1761415586.1498284,
+      "revenue": 3330.14,
+      "pnl": -15.599999999999909
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "SELL",
+      "quantity": 5,
+      "price": 939.26,
+      "timestamp": 1761415588.95076,
+      "revenue": 4696.3,
+      "pnl": -18.99999999999909
+    },
+    {
+      "symbol": "INFY",
+      "action": "SELL",
+      "quantity": 3,
+      "price": 1443.16,
+      "timestamp": 1761415589.0920703,
+      "revenue": 4329.4800000000005,
+      "pnl": -26.8799999999992
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "BUY",
+      "quantity": 5,
+      "price": 942.63,
+      "timestamp": 1761415589.3756125,
+      "cost": 4713.15
+    },
+    {
+      "symbol": "HDFCBANK",
+      "action": "BUY",
+      "quantity": 2,
+      "price": 1668.27,
+      "timestamp": 1761415589.5436769,
+      "cost": 3336.54
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 2801.22,
+      "timestamp": 1761415590.730204,
+      "cost": 2801.22
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "SELL",
+      "quantity": 5,
+      "price": 938.93,
+      "timestamp": 1761415592.543613,
+      "revenue": 4694.65,
+      "pnl": -18.5
+    },
+    {
+      "symbol": "TCS",
+      "action": "SELL",
+      "quantity": 1,
+      "price": 3522.64,
+      "timestamp": 1761415593.7986314,
+      "revenue": 3522.64,
+      "pnl": -3.0599999999999454
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "BUY",
+      "quantity": 5,
+      "price": 940.74,
+      "timestamp": 1761415595.329903,
+      "cost": 4703.7
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "SELL",
+      "quantity": 5,
+      "price": 934.98,
+      "timestamp": 1761415599.0062597,
+      "revenue": 4674.9,
+      "pnl": -28.800000000000182
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 2815.92,
+      "timestamp": 1761415599.505813,
+      "cost": 2815.92
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "SELL",
+      "quantity": 1,
+      "price": 2820.11,
+      "timestamp": 1761415604.698052,
+      "revenue": 2820.11,
+      "pnl": 4.190000000000055
+    },
+    {
+      "symbol": "TCS",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 3536.07,
+      "timestamp": 1761415606.9637625,
+      "cost": 3536.07
+    },
+    {
+      "symbol": "HDFCBANK",
+      "action": "BUY",
+      "quantity": 2,
+      "price": 1672.52,
+      "timestamp": 1761415607.6808743,
+      "cost": 3345.04
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "BUY",
+      "quantity": 5,
+      "price": 934.5,
+      "timestamp": 1761415608.2638288,
+      "cost": 4672.5
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "BUY",
+      "quantity": 5,
+      "price": 935.99,
+      "timestamp": 1761415608.810719,
+      "cost": 4679.95
+    },
+    {
+      "symbol": "HDFCBANK",
+      "action": "SELL",
+      "quantity": 2,
+      "price": 1670.76,
+      "timestamp": 1761415609.2785091,
+      "revenue": 3341.52,
+      "pnl": -3.519999999999982
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "SELL",
+      "quantity": 5,
+      "price": 935.67,
+      "timestamp": 1761415610.654354,
+      "revenue": 4678.349999999999,
+      "pnl": -1.6000000000003638
+    },
+    {
+      "symbol": "INFY",
+      "action": "BUY",
+      "quantity": 3,
+      "price": 1446.26,
+      "timestamp": 1761415611.0360656,
+      "cost": 4338.78
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 2832.5,
+      "timestamp": 1761415612.6424189,
+      "cost": 2832.5
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 2843.33,
+      "timestamp": 1761415613.0636714,
+      "cost": 2843.33
+    },
+    {
+      "symbol": "INFY",
+      "action": "BUY",
+      "quantity": 3,
+      "price": 1448.42,
+      "timestamp": 1761415616.2423398,
+      "cost": 4345.26
+    },
+    {
+      "symbol": "INFY",
+      "action": "BUY",
+      "quantity": 3,
+      "price": 1450.07,
+      "timestamp": 1761415616.693494,
+      "cost": 4350.21
+    },
+    {
+      "symbol": "INFY",
+      "action": "SELL",
+      "quantity": 3,
+      "price": 1444.74,
+      "timestamp": 1761415617.9287398,
+      "revenue": 4334.22,
+      "pnl": -15.989999999999782
+    },
+    {
+      "symbol": "TCS",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 3548.51,
+      "timestamp": 1761415619.4039345,
+      "cost": 3548.51
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 2823.63,
+      "timestamp": 1761415620.808979,
+      "cost": 2823.63
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "BUY",
+      "quantity": 5,
+      "price": 932.32,
+      "timestamp": 1761415621.9892817,
+      "cost": 4661.6
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 2827.97,
+      "timestamp": 1761415622.5376112,
+      "cost": 2827.97
+    },
+    {
+      "symbol": "INFY",
+      "action": "BUY",
+      "quantity": 3,
+      "price": 1450.7,
+      "timestamp": 1761415623.4796462,
+      "cost": 4352.1
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "SELL",
+      "quantity": 1,
+      "price": 2825.41,
+      "timestamp": 1761415625.024663,
+      "revenue": 2825.41,
+      "pnl": -2.5599999999999454
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "SELL",
+      "quantity": 5,
+      "price": 935.0,
+      "timestamp": 1761415627.2096815,
+      "revenue": 4675.0,
+      "pnl": 13.399999999999636
+    },
+    {
+      "symbol": "TCS",
+      "action": "SELL",
+      "quantity": 1,
+      "price": 3545.81,
+      "timestamp": 1761415627.6794662,
+      "revenue": 3545.81,
+      "pnl": -2.700000000000273
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "BUY",
+      "quantity": 5,
+      "price": 941.4,
+      "timestamp": 1761415635.972694,
+      "cost": 4707.0
+    },
+    {
+      "symbol": "HDFCBANK",
+      "action": "BUY",
+      "quantity": 2,
+      "price": 1672.9,
+      "timestamp": 1761415636.2800367,
+      "cost": 3345.8
+    },
+    {
+      "symbol": "TCS",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 3539.16,
+      "timestamp": 1761415637.5155957,
+      "cost": 3539.16
+    },
+    {
+      "symbol": "INFY",
+      "action": "SELL",
+      "quantity": 3,
+      "price": 1449.03,
+      "timestamp": 1761415641.1435568,
+      "revenue": 4347.09,
+      "pnl": -5.010000000000218
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "SELL",
+      "quantity": 5,
+      "price": 936.48,
+      "timestamp": 1761415642.376438,
+      "revenue": 4682.4,
+      "pnl": -24.600000000000364
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 2808.34,
+      "timestamp": 1761415643.8818889,
+      "cost": 2808.34
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 2816.98,
+      "timestamp": 1761415644.737411,
+      "cost": 2816.98
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "SELL",
+      "quantity": 1,
+      "price": 2799.03,
+      "timestamp": 1761415646.5627155,
+      "revenue": 2799.03,
+      "pnl": -17.949999999999818
+    },
+    {
+      "symbol": "HDFCBANK",
+      "action": "SELL",
+      "quantity": 2,
+      "price": 1664.71,
+      "timestamp": 1761415647.517969,
+      "revenue": 3329.42,
+      "pnl": -16.38000000000011
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 2793.63,
+      "timestamp": 1761415652.4999158,
+      "cost": 2793.63
+    },
+    {
+      "symbol": "INFY",
+      "action": "BUY",
+      "quantity": 3,
+      "price": 1449.52,
+      "timestamp": 1761415655.657004,
+      "cost": 4348.5599999999995
+    },
+    {
+      "symbol": "TCS",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 3576.81,
+      "timestamp": 1761415656.4994664,
+      "cost": 3576.81
+    },
+    {
+      "symbol": "TCS",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 3588.62,
+      "timestamp": 1761415657.3115008,
+      "cost": 3588.62
+    },
+    {
+      "symbol": "INFY",
+      "action": "SELL",
+      "quantity": 3,
+      "price": 1442.7,
+      "timestamp": 1761415657.6275845,
+      "revenue": 4328.1,
+      "pnl": -20.459999999999127
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "BUY",
+      "quantity": 5,
+      "price": 934.2,
+      "timestamp": 1761415658.0427132,
+      "cost": 4671.0
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "SELL",
+      "quantity": 1,
+      "price": 2806.26,
+      "timestamp": 1761415661.4720874,
+      "revenue": 2806.26,
+      "pnl": 12.63000000000011
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "BUY",
+      "quantity": 5,
+      "price": 936.42,
+      "timestamp": 1761415661.6353786,
+      "cost": 4682.099999999999
+    },
+    {
+      "symbol": "INFY",
+      "action": "BUY",
+      "quantity": 3,
+      "price": 1444.53,
+      "timestamp": 1761415662.4189463,
+      "cost": 4333.59
+    },
+    {
+      "symbol": "INFY",
+      "action": "SELL",
+      "quantity": 3,
+      "price": 1442.76,
+      "timestamp": 1761415662.6172307,
+      "revenue": 4328.28,
+      "pnl": -5.3100000000004
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "SELL",
+      "quantity": 5,
+      "price": 938.66,
+      "timestamp": 1761415663.00057,
+      "revenue": 4693.3,
+      "pnl": 11.200000000000728
+    },
+    {
+      "symbol": "TCS",
+      "action": "SELL",
+      "quantity": 1,
+      "price": 3576.78,
+      "timestamp": 1761415663.1300771,
+      "revenue": 3576.78,
+      "pnl": -11.83999999999969
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 2811.49,
+      "timestamp": 1761415663.2581139,
+      "cost": 2811.49
+    },
+    {
+      "symbol": "HDFCBANK",
+      "action": "BUY",
+      "quantity": 2,
+      "price": 1668.99,
+      "timestamp": 1761415665.8944185,
+      "cost": 3337.98
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 2831.25,
+      "timestamp": 1761415668.2355666,
+      "cost": 2831.25
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 2834.29,
+      "timestamp": 1761415668.6965046,
+      "cost": 2834.29
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 2839.8,
+      "timestamp": 1761415669.4774451,
+      "cost": 2839.8
+    },
+    {
+      "symbol": "HDFCBANK",
+      "action": "BUY",
+      "quantity": 2,
+      "price": 1667.03,
+      "timestamp": 1761415671.1172323,
+      "cost": 3334.06
+    },
+    {
+      "symbol": "TCS",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 3615.04,
+      "timestamp": 1761415673.072593,
+      "cost": 3615.04
+    },
+    {
+      "symbol": "TCS",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 3619.28,
+      "timestamp": 1761415673.5678422,
+      "cost": 3619.28
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "SELL",
+      "quantity": 1,
+      "price": 2853.77,
+      "timestamp": 1761415676.173437,
+      "revenue": 2853.77,
+      "pnl": 13.9699999999998
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 2858.12,
+      "timestamp": 1761415679.2987156,
+      "cost": 2858.12
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 2863.89,
+      "timestamp": 1761415680.2129905,
+      "cost": 2863.89
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "BUY",
+      "quantity": 5,
+      "price": 942.12,
+      "timestamp": 1761415680.3370714,
+      "cost": 4710.6
+    },
+    {
+      "symbol": "INFY",
+      "action": "BUY",
+      "quantity": 3,
+      "price": 1441.76,
+      "timestamp": 1761415681.3479838,
+      "cost": 4325.28
+    },
+    {
+      "symbol": "HDFCBANK",
+      "action": "SELL",
+      "quantity": 2,
+      "price": 1659.55,
+      "timestamp": 1761415685.2494957,
+      "revenue": 3319.1,
+      "pnl": -14.960000000000036
+    },
+    {
+      "symbol": "INFY",
+      "action": "SELL",
+      "quantity": 3,
+      "price": 1434.62,
+      "timestamp": 1761415687.8255765,
+      "revenue": 4303.86,
+      "pnl": -21.420000000000073
+    },
+    {
+      "symbol": "INFY",
+      "action": "BUY",
+      "quantity": 3,
+      "price": 1436.11,
+      "timestamp": 1761415688.8752308,
+      "cost": 4308.33
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "SELL",
+      "quantity": 5,
+      "price": 937.17,
+      "timestamp": 1761415689.0465302,
+      "revenue": 4685.849999999999,
+      "pnl": -24.75000000000091
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 2858.59,
+      "timestamp": 1761415691.542661,
+      "cost": 2858.59
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "BUY",
+      "quantity": 5,
+      "price": 937.79,
+      "timestamp": 1761415692.0749784,
+      "cost": 4688.95
+    },
+    {
+      "symbol": "RELIANCE",
+      "action": "SELL",
+      "quantity": 1,
+      "price": 2846.92,
+      "timestamp": 1761415694.331548,
+      "revenue": 2846.92,
+      "pnl": -11.670000000000073
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "SELL",
+      "quantity": 5,
+      "price": 934.78,
+      "timestamp": 1761415696.1105044,
+      "revenue": 4673.9,
+      "pnl": -15.050000000000182
+    },
+    {
+      "symbol": "INFY",
+      "action": "BUY",
+      "quantity": 3,
+      "price": 1451.2,
+      "timestamp": 1761415697.3130836,
+      "cost": 4353.6
+    },
+    {
+      "symbol": "INFY",
+      "action": "SELL",
+      "quantity": 3,
+      "price": 1448.23,
+      "timestamp": 1761415698.5093315,
+      "revenue": 4344.6900000000005,
+      "pnl": -8.909999999999854
+    },
+    {
+      "symbol": "TCS",
+      "action": "BUY",
+      "quantity": 1,
+      "price": 3612.02,
+      "timestamp": 1761415706.0464227,
+      "cost": 3612.02
+    },
+    {
+      "symbol": "TCS",
+      "action": "SELL",
+      "quantity": 1,
+      "price": 3601.24,
+      "timestamp": 1761415706.4164312,
+      "revenue": 3601.24,
+      "pnl": -10.7800000000002
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "BUY",
+      "quantity": 5,
+      "price": 932.17,
+      "timestamp": 1761415707.7996745,
+      "cost": 4660.849999999999
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "SELL",
+      "quantity": 5,
+      "price": 930.59,
+      "timestamp": 1761415709.721703,
+      "revenue": 4652.95,
+      "pnl": -7.899999999999636
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "BUY",
+      "quantity": 5,
+      "price": 932.64,
+      "timestamp": 1761415710.9057546,
+      "cost": 4663.2
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "SELL",
+      "quantity": 5,
+      "price": 931.33,
+      "timestamp": 1761415717.2238896,
+      "revenue": 4656.650000000001,
+      "pnl": -6.549999999999272
+    },
+    {
+      "symbol": "HDFCBANK",
+      "action": "BUY",
+      "quantity": 3,
+      "price": 1645.51,
+      "timestamp": 1761415719.3861475,
+      "cost": 4936.53
+    },
+    {
+      "symbol": "HDFCBANK",
+      "action": "SELL",
+      "quantity": 3,
+      "price": 1640.02,
+      "timestamp": 1761415730.6012201,
+      "revenue": 4920.0599999999995,
+      "pnl": -16.470000000000255
+    },
+    {
+      "symbol": "INFY",
+      "action": "BUY",
+      "quantity": 3,
+      "price": 1439.63,
+      "timestamp": 1761415731.325514,
+      "cost": 4318.89
+    },
+    {
+      "symbol": "INFY",
+      "action": "SELL",
+      "quantity": 3,
+      "price": 1438.34,
+      "timestamp": 1761415733.1259112,
+      "revenue": 4315.0199999999995,
+      "pnl": -3.8700000000008004
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "BUY",
+      "quantity": 5,
+      "price": 932.66,
+      "timestamp": 1761415735.0482118,
+      "cost": 4663.3
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "SELL",
+      "quantity": 5,
+      "price": 927.54,
+      "timestamp": 1761415735.4096513,
+      "revenue": 4637.7,
+      "pnl": -25.600000000000364
+    },
+    {
+      "symbol": "ICICIBANK",
+      "action": "BUY",
+      "quantity": 5,
+      "price": 929.19,
+      "timestamp": 1761415735.82522,
+      "cost": 4645.950000000001
+    }
+  ],
+  "current_positions": {
+    "ICICIBANK": {
+      "quantity": 5,
+      "entry_price": 929.19,
+      "entry_time": 1761415735.8252168,
+      "action": "BUY"
+    }
+  },
+  "market_data": {
+    "RELIANCE": {
+      "price": 2882.89,
+      "ai_score": 0.492,
+      "timestamp": 1761415741.211044
+    },
+    "HDFCBANK": {
+      "price": 1633.69,
+      "ai_score": 0.505,
+      "timestamp": 1761415741.7935903
+    },
+    "ICICIBANK": {
+      "price": 928.6,
+      "ai_score": 0.469,
+      "timestamp": 1761415740.900769
+    },
+    "TCS": {
+      "price": 3553.1,
+      "ai_score": 0.862,
+      "timestamp": 1761415739.4342208
+    },
+    "INFY": {
+      "price": 1443.76,
+      "ai_score": 0.368,
+      "timestamp": 1761415741.4583127
+    }
+  },
+  "timestamp": "2025-10-25T23:39:02.251272"
+}

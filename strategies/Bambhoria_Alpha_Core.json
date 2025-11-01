@@ -1,0 +1,23 @@
+{
+    "name": "Bambhoria Alpha Core",
+    "version": "1.0",
+    "created": "2025-10-26 18:51:20",
+    "components": {
+        "indicators": [
+            "momentum",
+            "rsi"
+        ],
+        "ai_model": "lightgbm_v51",
+        "entry_logic": "BUY when momentum>0 and rsi<60",
+        "exit_logic": "SELL when rsi>70 or loss>2%",
+        "risk": {
+            "max_loss": 5000,
+            "max_positions": 100,
+            "cooldown_secs": 10
+        }
+    },
+    "meta": {
+        "expected_winrate": 0.76,
+        "expected_risk_reward": 1.53
+    }
+}

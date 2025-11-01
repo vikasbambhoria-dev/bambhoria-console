@@ -1,0 +1,51 @@
+{
+    "name": "Bambhoria Alpha Core V2",
+    "version": "1.0",
+    "created": "2025-10-26 19:57:08",
+    "components": {
+        "indicators": [
+            "momentum_fast5",
+            "momentum_slow20",
+            "rsi",
+            "volume_surge"
+        ],
+        "ai_model": "lightgbm_v51",
+        "entry_logic": "BUY when momentum_fast5>0 AND momentum_slow20>0 AND rsi<60 AND volume_surge==true",
+        "exit_logic": "SELL when rsi>70 OR loss>1.5% OR (momentum_fast5<0 AND momentum_slow20<0 for 3 bars) OR trailing_stop_hit",
+        "risk": {
+            "max_loss": 5000,
+            "max_positions": 100,
+            "cooldown_secs": 10,
+            "trailing_stop_pct": 0.015,
+            "take_profit_rr": 2.0,
+            "per_trade_risk_pct": 0.005
+        }
+    },
+    "meta": {
+        "expected_winrate": 0.57,
+        "expected_risk_reward": 2.1,
+        "schema_version": "2.0",
+        "strategy_id": "7d936a18-02b1-462e-ac8d-babb4f1ded15",
+        "strategy_version": "1.0.0",
+        "generator": {
+            "app": "Omniverse Strategy Composer",
+            "version": "1.1.0"
+        },
+        "build": {
+            "git_commit": "933f143",
+            "timestamp": "2025-10-26T14:35:04Z",
+            "environment": "py3.13-windows"
+        },
+        "components_hash": "sha256:2407fb3db9b8917254e87a3d5958a4ce6e2092fb9e6b4c1da3508d9312dd08a1",
+        "performance": {
+            "overall": {
+                "win_rate": 0.57,
+                "avg_rr": 2.1
+            }
+        },
+        "validation": {
+            "status": "draft",
+            "timestamp": "2025-10-26T14:35:04Z"
+        }
+    }
+}

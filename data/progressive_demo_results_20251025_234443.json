@@ -1,0 +1,63 @@
+{
+  "demo_completed": "2025-10-25T23:44:43.806850",
+  "days_simulated": 15,
+  "phase_changes": 0,
+  "final_status": {
+    "current_phase": {
+      "number": 0,
+      "name": "Phase 1: Single Token Validation",
+      "description": "Start with single reliable stock, tiny positions",
+      "allowed_symbols": [
+        "RELIANCE"
+      ],
+      "max_position_size": 1000.0,
+      "max_daily_trades": 3,
+      "observation_days": 7
+    },
+    "progress": {
+      "days_in_phase": 15,
+      "days_required": 7,
+      "days_remaining": 0,
+      "can_advance": false,
+      "advancement_approved": false
+    },
+    "performance": {
+      "total_trades": 0,
+      "winning_trades": 0,
+      "losing_trades": 0,
+      "win_rate": "0.00%",
+      "total_pnl": "\u20b90.00",
+      "avg_trade_pnl": "\u20b90.00",
+      "daily_trades_today": 0,
+      "open_positions": 0
+    },
+    "success_criteria": {
+      "min_winrate": 0.55,
+      "min_avg_pnl": 10.0,
+      "max_drawdown": -500.0
+    },
+    "next_phase": {
+      "phase_name": "Phase 2: Conservative Expansion",
+      "symbols": [
+        "RELIANCE",
+        "TCS"
+      ],
+      "max_position_size": 2500.0,
+      "max_daily_trades": 5,
+      "observation_days": 10,
+      "success_criteria": {
+        "min_winrate": 0.58,
+        "min_avg_pnl": 25.0,
+        "max_drawdown": -1000.0
+      },
+      "description": "Add one more blue-chip stock, small increase in size"
+    }
+  },
+  "trade_history": [],
+  "performance": {
+    "total_trades": 0,
+    "win_rate": 0.0,
+    "total_pnl": 0.0,
+    "avg_trade_pnl": 0.0
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "trade_count": 0,
+  "q_table": {},
+  "statistics": {
+    "trade_count": 0,
+    "is_training": false,
+    "experience_replay": {
+      "size": 0,
+      "avg_reward": 0,
+      "win_rate": 0,
+      "total_reward": 0
+    },
+    "q_learning": {
+      "states_explored": 0,
+      "avg_q_value": 0,
+      "best_action_distribution": {}
+    },
+    "auto_trainer": {
+      "model_version": 1,
+      "model_accuracy": 0.0,
+      "training_samples": 0,
+      "retrain_count": 0,
+      "time_since_retrain": 305.7973880767822,
+      "performance_history": []
+    }
+  },
+  "timestamp": "2025-10-27T10:30:57.239515"
+}

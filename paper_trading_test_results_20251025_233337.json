@@ -1,0 +1,80 @@
+{
+  "health": {
+    "process_mock_feed": true,
+    "process_dashboard": true,
+    "process_trading_engine": false,
+    "process_pipeline": true,
+    "endpoint_/status": true,
+    "endpoint_/health": true,
+    "endpoint_/metrics": false,
+    "endpoint_/prometheus": false,
+    "cpu_healthy": true,
+    "memory_healthy": false
+  },
+  "trading_scenarios": {
+    "bullish_trend": {
+      "duration_seconds": 60.000394105911255,
+      "status": "completed"
+    },
+    "bearish_trend": {
+      "duration_seconds": 60.00027370452881,
+      "status": "completed"
+    },
+    "high_volatility": {
+      "duration_seconds": 60.00019979476929,
+      "status": "completed"
+    },
+    "sideways_market": {
+      "duration_seconds": 60.002684593200684,
+      "status": "completed"
+    }
+  },
+  "stress_test": {
+    "duration_seconds": 0.005622386932373047,
+    "avg_cpu_usage": 24.5,
+    "max_cpu_usage": 24.5,
+    "avg_memory_usage": 84.4,
+    "max_memory_usage": 84.4,
+    "crashed_processes": [
+      "trading_engine"
+    ]
+  },
+  "final_metrics": {
+    "timestamp": 1761415416.122823,
+    "uptime_seconds": 283.4902410507202,
+    "system": {
+      "cpu_count": 4,
+      "cpu_percent": 25.9,
+      "memory_total": 4205858816,
+      "memory_available": 661692416,
+      "memory_percent": 84.3,
+      "disk_usage": 1.8
+    },
+    "processes": {
+      "mock_feed": {
+        "pid": 13048,
+        "cpu_percent": 0.0,
+        "memory_mb": 27.796875,
+        "running_time": 284.4347388744354,
+        "status": "running"
+      },
+      "dashboard": {
+        "pid": 1304,
+        "cpu_percent": 0.0,
+        "memory_mb": 40.91015625,
+        "running_time": 281.3381562232971,
+        "status": "running"
+      },
+      "trading_engine": {
+        "status": "stopped"
+      },
+      "pipeline": {
+        "pid": 6584,
+        "cpu_percent": 0.0,
+        "memory_mb": 141.71875,
+        "running_time": 275.16977882385254,
+        "status": "running"
+      }
+    }
+  }
+}

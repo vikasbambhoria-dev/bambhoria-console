@@ -1,0 +1,11 @@
+{
+  "ignore_keys": [
+    "expected_winrate",
+    "expected_risk_reward",
+    "strategy_id",
+    "build.timestamp",
+    "validation.timestamp",
+    "performance.overall.win_rate",
+    "performance.overall.avg_rr"
+  ]
+}

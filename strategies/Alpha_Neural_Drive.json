@@ -1,0 +1,46 @@
+{
+    "name": "Alpha Neural Drive",
+    "version": "1.0",
+    "created": "2025-10-26 11:11:42",
+    "components": {
+        "indicators": [
+            "momentum",
+            "rsi"
+        ],
+        "ai_model": "neural_insight_v1",
+        "entry_logic": "BUY when momentum>0.03 and rsi<50",
+        "exit_logic": "SELL when rsi>70 or pnl< -100",
+        "risk": {
+            "max_loss": 5000,
+            "max_positions": 100,
+            "cooldown_secs": 10
+        }
+    },
+    "meta": {
+        "expected_winrate": 0.72,
+        "expected_risk_reward": 2.4,
+        "schema_version": "2.0",
+        "strategy_id": "805e062d-6196-4663-a9d0-91ea151e5a87",
+        "strategy_version": "1.0.0",
+        "generator": {
+            "app": "Omniverse Strategy Composer",
+            "version": "1.1.0"
+        },
+        "build": {
+            "git_commit": "933f143",
+            "timestamp": "2025-10-26T16:11:43Z",
+            "environment": "py3.13-windows"
+        },
+        "components_hash": "sha256:a79039e86255c04cb1f22945203cf7f6c00fa9110def1a8c74c485898e817400",
+        "performance": {
+            "overall": {
+                "win_rate": 0.72,
+                "avg_rr": 2.4
+            }
+        },
+        "validation": {
+            "status": "draft",
+            "timestamp": "2025-10-26T16:11:43Z"
+        }
+    }
+}

@@ -1,0 +1,58 @@
+{
+  "timestamp": "2025-10-25T19:20:13.319310",
+  "dashboard": {
+    "service": "dashboard",
+    "status": "fail",
+    "response_time": null,
+    "details": {
+      "error": "Connection refused"
+    },
+    "timestamp": "2025-10-25T19:20:13.320487"
+  },
+  "connector": {
+    "service": "connector",
+    "status": "fail",
+    "response_time": 2.0566840171813965,
+    "details": {
+      "error": "Connection failed (code: 10061)"
+    },
+    "timestamp": "2025-10-25T19:20:17.423728"
+  },
+  "system": {
+    "cpu": {
+      "percent": 17.8,
+      "load_average": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "memory": {
+      "percent": 85.4,
+      "used_gb": 3.35,
+      "total_gb": 3.92,
+      "available_gb": 0.57
+    },
+    "disk": {
+      "percent": 1.8,
+      "used_gb": 2.39,
+      "total_gb": 131.05,
+      "free_gb": 128.66
+    },
+    "network": {
+      "connections": 65
+    },
+    "timestamp": "2025-10-25T19:20:21.098691"
+  },
+  "windows_services": {
+    "dashboard": {
+      "status": "Not Found",
+      "error": "Get-Service : Cannot find any service \nwith service name 'GodEyeDashboard'.\nAt line:1 char:1\n+ Get-Service -Name GodEyeDashboard | \nConvertTo-Json\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    + CategoryInfo          : ObjectN \n   otFound: (GodEyeDashboard:String)  \n   [Get-Service], ServiceCommandExc   \n eption\n    + FullyQualifiedErrorId : NoServi \n   ceFoundForGivenName,Microsoft.Pow  \n  erShell.Commands.GetServiceComman   \n d"
+    },
+    "connector": {
+      "status": "Not Found",
+      "error": "Get-Service : Cannot find any service \nwith service name 'GodEyeConnector'.\nAt line:1 char:1\n+ Get-Service -Name GodEyeConnector | \nConvertTo-Json\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    + CategoryInfo          : ObjectN \n   otFound: (GodEyeConnector:String)  \n   [Get-Service], ServiceCommandExc   \n eption\n    + FullyQualifiedErrorId : NoServi \n   ceFoundForGivenName,Microsoft.Pow  \n  erShell.Commands.GetServiceComman   \n d"
+    }
+  },
+  "overall_status": "critical"
+}
