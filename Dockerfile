@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:3.11-slim
 
 # Set working directory
 WORKDIR /app
@@ -9,11 +9,12 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements
-COPY requirements.txt .
+# Copy requirements (lightweight web-only deps for Render/containers)
+COPY requirements-web.txt ./requirements-web.txt
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Upgrade pip toolchain and install Python dependencies
+RUN pip install --no-cache-dir -U pip setuptools wheel \
+    && pip install --no-cache-dir -r requirements-web.txt
 
 # Copy application code
 COPY . .
@@ -27,7 +28,7 @@ EXPOSE 5000
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:5000/api/status || exit 1
+    CMD curl -fsS http://localhost:${PORT:-5000}/health || exit 1
 
-# Start application
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "--timeout", "300", "wsgi:application"]
+# Start application (Render sets $PORT; use shell to expand it)
+CMD ["/bin/sh", "-lc", "gunicorn --workers 1 --threads 4 --timeout 120 --bind 0.0.0.0:${PORT:-5000} wsgi:application"]
