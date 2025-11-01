@@ -3,7 +3,7 @@ services:
     name: bambhoria-quantum
     env: python
     plan: free
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install -r requirements-web.txt
     startCommand: gunicorn bambhoria_quantum_web_app:app --bind 0.0.0.0:$PORT
     autoDeploy: true
     envVars:
