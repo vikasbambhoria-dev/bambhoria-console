@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: bambhoria-quantum
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn bambhoria_quantum_web_app:app --bind 0.0.0.0:$PORT
+    autoDeploy: true
+    envVars:
+      - key: ZERODHA_API_KEY
+        sync: false
+      - key: ZERODHA_API_SECRET
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DOMAIN
+        value: 0.0.0.0
+      - key: PORT
+        value: 10000
