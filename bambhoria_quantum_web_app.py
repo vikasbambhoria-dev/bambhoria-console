@@ -33,17 +33,23 @@ def _checksum(api_key: str, request_token: str, api_secret: str) -> str:
 
 def create_app() -> Flask:
 	app = Flask(__name__, static_folder="static", template_folder="templates")
-	app.secret_key = _env("FLASK_SECRET_KEY", "bambhoria_quantum_secret_2025")
+	# Prefer FLASK_SECRET_KEY, else SECRET_KEY, else default
+	app.secret_key = (
+		_env("FLASK_SECRET_KEY")
+		or _env("SECRET_KEY")
+		or "bambhoria_quantum_secret_2025"
+	)
 
 	# Zerodha config
 	app.config["ZERODHA_API_KEY"] = _env("ZERODHA_API_KEY", "")
 	app.config["ZERODHA_API_SECRET"] = _env("ZERODHA_API_SECRET", "")
-	# Use domain callback if set, else local dev callback
+	# Use domain callback if set (and not localhost-like), else local dev callback
 	domain = _env("DOMAIN", "")
 	default_callback = "http://127.0.0.1:5000/zerodha/callback"
-	app.config["ZERODHA_REDIRECT_URL"] = (
-		f"https://{domain}/callback" if domain else default_callback
-	)
+	if domain and domain not in {"0.0.0.0", "127.0.0.1", "localhost"}:
+		app.config["ZERODHA_REDIRECT_URL"] = f"https://{domain}/zerodha/callback"
+	else:
+		app.config["ZERODHA_REDIRECT_URL"] = default_callback
 
 	# In-memory session
 	app.config["ZERODHA_SESSION"] = None
