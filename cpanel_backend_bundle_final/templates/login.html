@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login • Bambhoria Quantum</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+  
+</head>
+<body>
+	<nav class="nav">
+		<div class="brand"><span class="logo"></span> Bambhoria Quantum Trading</div>
+		<div class="actions">
+			<a class="btn secondary" href="{{ (request.script_root or '') }}/">Dashboard</a>
+			<a class="btn" href="{{ (request.script_root or '') }}/login/zerodha">Connect with Zerodha</a>
+		</div>
+	</nav>
+
+	<section class="hero" style="grid-template-columns:1fr;max-width:840px">
+		<div class="card">
+			<h1>Connect your Zerodha account</h1>
+			<p class="muted">Securely authenticate with Zerodha to enable live trading features, profile verification, and quote streaming.</p>
+			<div class="cta" style="margin-top:10px">
+				<a class="btn" href="{{ (request.script_root or '') }}/login/zerodha">Continue with Zerodha</a>
+				<a class="btn ghost" href="https://kite.trade/docs/connect/v3/" target="_blank" rel="noopener">What is Zerodha Connect?</a>
+			</div>
+		</div>
+	</section>
+
+	<footer class="footer">
+		Need help? Contact support with your timestamp from the events log.
+	</footer>
+</body>
+</html>

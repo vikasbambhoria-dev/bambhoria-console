@@ -1,0 +1,184 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bambhoria Quantum Dashboard</title>
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+		<script nonce="{{ csp_nonce }}">
+			// Make the app work both at domain root (/) and subpath (/app)
+			const ROOT = (function(){
+				try {
+					const r = JSON.parse("{{ request.script_root|tojson|safe }}");
+					if (!r || r === "/") return "";
+					return r;
+				} catch(e){ return "" }
+			})();
+			function u(p){ // join ROOT with absolute-style path '/x'
+				if (!p.startsWith('/')) p = '/' + p;
+				const base = ROOT.endsWith('/') ? ROOT.slice(0, -1) : ROOT;
+				return base + p;
+			}
+			async function fetchJSON(url, opts){
+				const r = await fetch(url, opts||{}); return r.json();
+			}
+		async function refreshStatus(){
+			try{
+					const s = await fetchJSON(u('/api/status'));
+				document.getElementById('auth').textContent = s.authenticated ? 'Yes' : 'No';
+				document.getElementById('user').textContent = s.user_id || '-';
+				document.getElementById('live').textContent = s.live_running ? 'Running' : 'Stopped';
+				document.getElementById('demo').textContent = s.demo_mode ? 'On' : 'Off';
+				document.getElementById('autoheal').textContent = s.auto_heal ? 'On' : 'Off';
+			}catch(e){console.error(e)}
+		}
+		async function startLive(){
+				const r = await fetchJSON(u('/api/start_trading'));
+			alert(r.message || JSON.stringify(r));
+			refreshStatus();
+		}
+		async function stopLive(){
+				const r = await fetchJSON(u('/api/stop_trading'));
+			alert(r.message || JSON.stringify(r));
+			refreshStatus();
+		}
+		async function toggleDemo(enable){
+				const r = await fetchJSON(u('/api/toggle_demo'), {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({enable})});
+			alert((r.ok?'Demo mode: ':'Error: ')+(r.demo_mode!==undefined?r.demo_mode:r.message));
+			refreshStatus();
+		}
+		async function loadEvents(){
+			try{
+					const e = await fetchJSON(u('/api/events?limit=50'));
+				document.getElementById('events').textContent = JSON.stringify(e.events || [], null, 2);
+			}catch(err){console.error(err)}
+		}
+		function startQuoteStream(){
+			try{
+				const es = new EventSource(u('/stream/quotes'));
+				es.onmessage = (ev)=>{
+					// default event (ping or data)
+				};
+				es.addEventListener('quotes', (ev)=>{
+					try{
+						const payload = JSON.parse(ev.data || '{}');
+						const data = payload.data || payload;
+						renderQuotes(data);
+					} catch(e){ console.warn('quotes parse', e) }
+				});
+				es.onerror = ()=>{/* keep alive; browser will retry */};
+			}catch(e){console.error('SSE error', e)}
+		}
+		function renderQuotes(data){
+			const el = document.getElementById('quotes');
+			if(!el) return;
+			const rows = [];
+			const keys = Object.keys(data||{});
+			keys.sort();
+			for(const k of keys){
+				const q = data[k]||{};
+				const lp = (q.last_price ?? (q.ohlc && q.ohlc.close)) ?? '';
+				const o = q.ohlc?.open ?? lp;
+				const ch = (lp && o) ? (lp - o) : 0;
+				const pct = (lp && o) ? ((ch/o)*100).toFixed(2) : '';
+				const cls = ch>0? 'up' : (ch<0? 'down':'');
+				rows.push(`<div class="qrow ${cls}"><div class="sym">${k}</div><div class="price">${lp}</div><div class="chg">${ch?ch.toFixed(2):''} <span class="pct">${pct?('('+pct+'%)'):''}</span></div></div>`);
+			}
+			el.innerHTML = rows.join('');
+		}
+		async function panicStop(){
+			const token = prompt('Enter ADMIN_TOKEN to PANIC STOP');
+			if(!token) return;
+			try{
+				const r = await fetch(u('/api/panic_stop'), {method:'POST', headers:{'Authorization':'Bearer '+token}});
+				const j = await r.json();
+				alert(j.message || JSON.stringify(j));
+				refreshStatus();
+			}catch(e){ alert('Error: '+e) }
+		}
+		setInterval(()=>{refreshStatus(); loadEvents();}, 4000);
+		window.addEventListener('load', ()=>{refreshStatus(); loadEvents(); startQuoteStream();});
+	</script>
+		</head>
+		<body>
+			<nav class="nav">
+				<div class="brand"><span class="logo"></span> Bambhoria Quantum Trading</div>
+				<div class="actions">
+					<a class="btn secondary" href="{{ (request.script_root or '') }}/api/status">API Status</a>
+					<a class="btn" href="{{ (request.script_root or '') }}/login/zerodha">Connect with Zerodha</a>
+				</div>
+			</nav>
+
+			<section class="hero">
+				<div class="card">
+					<div class="badges">
+						<span class="badge">Secure OAuth</span>
+						<span class="badge">Live Quotes</span>
+						<span class="badge">Auto-Heal</span>
+					</div>
+					<h1>Trade smarter with Bambhoria<br>and Zerodha Connect</h1>
+					<p>Authenticate with Zerodha, monitor live quotes, and manage your trading loops with confidence. Built for reliability and speed.</p>
+					<div class="cta">
+						<a class="btn" href="{{ (request.script_root or '') }}/login/zerodha">Connect with Zerodha</a>
+						<a class="btn ghost" href="{{ (request.script_root or '') }}/api/logs/events/download">Download Events</a>
+					</div>
+					<div class="kpi">
+						<div class="tile"><div class="label">Authenticated</div><div class="value" id="auth">-</div></div>
+						<div class="tile"><div class="label">User</div><div class="value" id="user">-</div></div>
+						<div class="tile ok"><div class="label">Live</div><div class="value" id="live">-</div></div>
+					</div>
+				</div>
+				<div class="card">
+					<h3 style="margin-top:0">Live controls</h3>
+					<p class="muted">Start/stop the live loop and toggle Demo mode anytime.</p>
+					<div class="cta" style="margin-top:8px">
+						<button class="btn" onclick="startLive()">Start Live</button>
+						<button class="btn secondary" onclick="stopLive()">Stop Live</button>
+						<button class="btn ghost" onclick="toggleDemo(true)">Enable Demo</button>
+						<button class="btn ghost" onclick="toggleDemo(false)">Disable Demo</button>
+					</div>
+					<div class="kpi">
+						<div class="tile"><div class="label">Demo</div><div class="value" id="demo">-</div></div>
+						<div class="tile"><div class="label">Auto-heal</div><div class="value" id="autoheal">-</div></div>
+						<div class="tile"><div class="label">Last beat</div><div class="value" id="beat">-</div></div>
+					</div>
+					<div class="cta" style="margin-top:12px">
+						<button class="btn danger" onclick="panicStop()">PANIC STOP</button>
+						<a class="btn ghost" href="{{ (request.script_root or '') }}/docs" target="_blank">API Docs</a>
+					</div>
+				</div>
+			</section>
+
+			<section class="grid">
+				<div class="feature">
+					<h3>Seamless OAuth</h3>
+					<p>One-click redirect to Zerodha and secure token exchange with robust logging.</p>
+				</div>
+				<div class="feature">
+					<h3>Resilient runners</h3>
+					<p>Auto-healing supervisor keeps your live loop healthy even after network hiccups.</p>
+				</div>
+				<div class="feature">
+					<h3>Actionable events</h3>
+					<p>Download event logs or view recent entries directly on the dashboard.</p>
+				</div>
+			</section>
+
+			<section class="panel">
+				<h3 style="margin:0 0 10px">Recent events</h3>
+				<div class="events" id="events">[]</div>
+			</section>
+
+			<section class="panel">
+				<h3 style="margin:0 0 10px">Live Quotes</h3>
+				<div id="quotes" class="quotes"></div>
+			</section>
+
+			<footer class="footer">
+				© {{ datetime.utcnow().year }} Bambhoria Quantum. Built for bambhoriaquantum.in
+			</footer>
+		</body>
+		</html>

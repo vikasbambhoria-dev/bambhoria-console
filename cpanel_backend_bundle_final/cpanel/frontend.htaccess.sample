@@ -1,0 +1,49 @@
+# ======================================================
+# Frontend SPA hosting on Apache (cPanel)
+# Place this file as public_html/.htaccess
+# ======================================================
+
+# Ensure mod_rewrite is enabled on the server
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Don't rewrite existing files or directories
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # DO NOT intercept backend under /app (Flask/Passenger)
+  RewriteCond %{REQUEST_URI} !^/app/ [NC]
+
+  # Rewrite everything else to the SPA entry point
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Far-future caching for hashed static assets
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType application/json "access plus 1 day"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+# Gzip compression (if available)
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json image/svg+xml
+</IfModule>
+
+# Basic security headers for static responses
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "no-referrer"
+  Header always set X-Frame-Options "DENY"
+  # Uncomment if your site is always HTTPS on apex and subdomains:
+  # Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+  # Adjust CSP to your frontend needs (example allows same-origin and data images):
+  Header set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'"
+</IfModule>

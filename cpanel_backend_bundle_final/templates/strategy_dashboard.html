@@ -1,0 +1,470 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bambhoria AI Ensemble Strategy Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #4ade80;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .controls {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #4ade80, #22c55e);
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 222, 128, 0.4);
+        }
+
+        .btn.stop {
+            background: linear-gradient(45deg, #ef4444, #dc2626);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .dashboard-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #4ade80;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .metric-value {
+            font-weight: bold;
+            color: #4ade80;
+        }
+
+        .strategy-weight {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .weight-bar {
+            width: 200px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .weight-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #4ade80, #22c55e);
+            transition: width 0.3s ease;
+        }
+
+        .signal-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 12px;
+            margin: 8px 0;
+            border-left: 4px solid #4ade80;
+        }
+
+        .signal-buy {
+            border-left-color: #22c55e;
+        }
+
+        .signal-sell {
+            border-left-color: #ef4444;
+        }
+
+        .regime-indicator {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin: 2px;
+        }
+
+        .regime-trending_up { background: #22c55e; }
+        .regime-trending_down { background: #ef4444; }
+        .regime-ranging { background: #f59e0b; }
+        .regime-high_volatility { background: #8b5cf6; }
+        .regime-low_volatility { background: #06b6d4; }
+        .regime-unknown { background: #6b7280; }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-top: 20px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-active { background: #22c55e; }
+        .status-inactive { background: #ef4444; }
+
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🤖 AI Ensemble Strategy Dashboard</h1>
+        <p class="subtitle">Bambhoria God-Eye V52 - World-Class Trading System</p>
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="startSystem()">🚀 Start System</button>
+        <button class="btn stop" onclick="stopSystem()">⏹️ Stop System</button>
+        <span id="systemStatus">
+            <span class="status-indicator status-inactive"></span>
+            System Offline
+        </span>
+    </div>
+
+    <div class="dashboard-grid">
+        <!-- Ensemble Performance -->
+        <div class="dashboard-card">
+            <h3 class="card-title">📊 Ensemble Performance</h3>
+            <div id="ensembleMetrics">
+                <div class="metric">
+                    <span>Total Signals:</span>
+                    <span class="metric-value" id="totalSignals">0</span>
+                </div>
+                <div class="metric">
+                    <span>Win Rate:</span>
+                    <span class="metric-value" id="winRate">0%</span>
+                </div>
+                <div class="metric">
+                    <span>Total P&L:</span>
+                    <span class="metric-value" id="totalPnL">₹0</span>
+                </div>
+                <div class="metric">
+                    <span>Active Strategies:</span>
+                    <span class="metric-value" id="activeStrategies">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Strategy Weights -->
+        <div class="dashboard-card">
+            <h3 class="card-title">⚖️ Strategy Weights</h3>
+            <div id="strategyWeights">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+
+        <!-- Market Regimes -->
+        <div class="dashboard-card">
+            <h3 class="card-title">🌍 Market Regimes</h3>
+            <div id="marketRegimes">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+
+        <!-- Recent Signals -->
+        <div class="dashboard-card">
+            <h3 class="card-title">🎯 Recent Signals</h3>
+            <div id="recentSignals" style="max-height: 300px; overflow-y: auto;">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+
+        <!-- Performance Chart -->
+        <div class="dashboard-card full-width">
+            <h3 class="card-title">📈 Cumulative P&L</h3>
+            <div class="chart-container">
+                <canvas id="performanceChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let performanceChart;
+        let updateInterval;
+
+        // Initialize chart
+        function initChart() {
+            const ctx = document.getElementById('performanceChart').getContext('2d');
+            performanceChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Cumulative P&L (₹)',
+                        data: [],
+                        borderColor: '#4ade80',
+                        backgroundColor: 'rgba(74, 222, 128, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: 'white' }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: 'white' },
+                            grid: { color: 'rgba(255, 255, 255, 0.2)' }
+                        },
+                        y: {
+                            ticks: { color: 'white' },
+                            grid: { color: 'rgba(255, 255, 255, 0.2)' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Start system
+        function startSystem() {
+            fetch('/api/start_system')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('System started:', data);
+                    document.getElementById('systemStatus').innerHTML = 
+                        '<span class="status-indicator status-active"></span>System Online';
+                    startUpdates();
+                })
+                .catch(error => console.error('Error starting system:', error));
+        }
+
+        // Stop system
+        function stopSystem() {
+            fetch('/api/stop_system')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('System stopped:', data);
+                    document.getElementById('systemStatus').innerHTML = 
+                        '<span class="status-indicator status-inactive"></span>System Offline';
+                    stopUpdates();
+                })
+                .catch(error => console.error('Error stopping system:', error));
+        }
+
+        // Start dashboard updates
+        function startUpdates() {
+            if (updateInterval) clearInterval(updateInterval);
+            updateInterval = setInterval(updateDashboard, 3000); // Update every 3 seconds
+            updateDashboard(); // Initial update
+        }
+
+        // Stop dashboard updates
+        function stopUpdates() {
+            if (updateInterval) {
+                clearInterval(updateInterval);
+                updateInterval = null;
+            }
+        }
+
+        // Main dashboard update function
+        function updateDashboard() {
+            updateEnsembleMetrics();
+            updateStrategyWeights();
+            updateMarketRegimes();
+            updateRecentSignals();
+            updatePerformanceChart();
+        }
+
+        // Update ensemble metrics
+        function updateEnsembleMetrics() {
+            fetch('/api/ensemble_status')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'active' && data.report) {
+                        const stats = data.report.ensemble_stats;
+                        document.getElementById('totalSignals').textContent = stats.total_signals;
+                        document.getElementById('winRate').textContent = (stats.win_rate * 100).toFixed(1) + '%';
+                        document.getElementById('totalPnL').textContent = '₹' + stats.total_pnl.toLocaleString();
+                        document.getElementById('activeStrategies').textContent = data.report.active_strategies;
+                    }
+                })
+                .catch(error => console.error('Error updating ensemble metrics:', error));
+        }
+
+        // Update strategy weights
+        function updateStrategyWeights() {
+            fetch('/api/strategy_weights')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('strategyWeights');
+                    container.innerHTML = '';
+                    
+                    Object.entries(data.current_weights).forEach(([strategy, weight]) => {
+                        const weightDiv = document.createElement('div');
+                        weightDiv.className = 'strategy-weight';
+                        weightDiv.innerHTML = `
+                            <span>${strategy}</span>
+                            <div class="weight-bar">
+                                <div class="weight-fill" style="width: ${weight * 100}%"></div>
+                            </div>
+                            <span>${(weight * 100).toFixed(1)}%</span>
+                        `;
+                        container.appendChild(weightDiv);
+                    });
+                })
+                .catch(error => console.error('Error updating strategy weights:', error));
+        }
+
+        // Update market regimes
+        function updateMarketRegimes() {
+            fetch('/api/market_regimes')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('marketRegimes');
+                    container.innerHTML = '';
+                    
+                    Object.entries(data.current_regimes).forEach(([symbol, regime]) => {
+                        const regimeDiv = document.createElement('div');
+                        regimeDiv.className = 'metric';
+                        regimeDiv.innerHTML = `
+                            <span>${symbol}:</span>
+                            <span class="regime-indicator regime-${regime}">${regime.replace('_', ' ').toUpperCase()}</span>
+                        `;
+                        container.appendChild(regimeDiv);
+                    });
+                })
+                .catch(error => console.error('Error updating market regimes:', error));
+        }
+
+        // Update recent signals
+        function updateRecentSignals() {
+            fetch('/api/signals')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('recentSignals');
+                    container.innerHTML = '';
+                    
+                    data.signals.slice(-10).reverse().forEach(signal => {
+                        const signalDiv = document.createElement('div');
+                        signalDiv.className = `signal-item signal-${signal.action.toLowerCase()}`;
+                        
+                        const time = new Date(signal.timestamp).toLocaleTimeString();
+                        signalDiv.innerHTML = `
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <strong>${signal.symbol}</strong> - ${signal.action}
+                                    <br>
+                                    <small>Confidence: ${(signal.confidence * 100).toFixed(1)}% | ${signal.participating_strategies.join(', ')}</small>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div>${time}</div>
+                                    <div class="regime-indicator regime-${signal.market_regime}">${signal.market_regime}</div>
+                                </div>
+                            </div>
+                        `;
+                        container.appendChild(signalDiv);
+                    });
+                })
+                .catch(error => console.error('Error updating recent signals:', error));
+        }
+
+        // Update performance chart
+        function updatePerformanceChart() {
+            fetch('/api/performance_history')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.history.length > 0) {
+                        const labels = data.history.map(h => new Date(h.timestamp).toLocaleTimeString());
+                        const pnlData = data.history.map(h => h.cumulative_pnl);
+                        
+                        performanceChart.data.labels = labels.slice(-50); // Last 50 data points
+                        performanceChart.data.datasets[0].data = pnlData.slice(-50);
+                        performanceChart.update('none');
+                    }
+                })
+                .catch(error => console.error('Error updating performance chart:', error));
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initChart();
+            console.log('🚀 Bambhoria AI Ensemble Dashboard Loaded');
+        });
+    </script>
+</body>
+</html>
+    

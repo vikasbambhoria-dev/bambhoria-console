@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bambhoria Trading Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .header { background: #2c3e50; color: white; padding: 20px; border-radius: 5px; }
+        .orders-section { background: white; margin: 20px 0; padding: 20px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .order-item { border-bottom: 1px solid #eee; padding: 10px 0; }
+        .order-time { color: #666; font-size: 0.9em; }
+        .profit { color: #27ae60; font-weight: bold; }
+        .loss { color: #e74c3c; font-weight: bold; }
+        .status { padding: 2px 8px; border-radius: 3px; font-size: 0.8em; }
+        .status-paper { background: #3498db; color: white; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧠 Bambhoria Trading Dashboard</h1>
+        <p>Real-time Order Management & Risk Control</p>
+    </div>
+    
+    <div class="orders-section">
+        <h2>📋 Live Orders</h2>
+        <div id="orders-list">No orders received yet...</div>
+    </div>
+
+    <script>
+        const ordersList = document.getElementById('orders-list');
+        const orders = [];
+
+        // WebSocket connection for real-time updates
+        const ws = new WebSocket('ws://localhost:5000/ws');
+        
+        ws.onopen = function() {
+            console.log('Connected to dashboard');
+            updateStatus('Connected to dashboard');
+        };
+        
+        ws.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            if (data.type === 'order_update') {
+                addOrder(data.data);
+            }
+        };
+        
+        ws.onclose = function() {
+            console.log('Disconnected from dashboard');
+            updateStatus('Disconnected from dashboard');
+        };
+
+        function addOrder(orderData) {
+            orders.unshift(orderData);
+            renderOrders();
+        }
+
+        function renderOrders() {
+            if (orders.length === 0) {
+                ordersList.innerHTML = 'No orders received yet...';
+                return;
+            }
+
+            ordersList.innerHTML = orders.map(order => {
+                const pnlClass = order.pnl >= 0 ? 'profit' : 'loss';
+                const pnlSign = order.pnl >= 0 ? '+' : '';
+                
+                return `
+                    <div class="order-item">
+                        <div>
+                            <strong>${order.side} ${order.symbol}</strong> 
+                            x${order.qty} @ ₹${order.price}
+                            <span class="status status-${order.mode}">${order.mode.toUpperCase()}</span>
+                        </div>
+                        <div class="order-time">
+                            ${order.time} | P&L: <span class="${pnlClass}">${pnlSign}₹${order.pnl}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateStatus(message) {
+            // Could add a status indicator
+            console.log(message);
+        }
+    </script>
+</body>
+</html>
